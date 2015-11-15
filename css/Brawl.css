@@ -1,0 +1,300 @@
+.grid{
+  display: flex;
+  flex-flow: row wrap;
+  width: 1000px;
+}
+
+.contain {
+  perspective: 700;
+  position: absolute;
+  transition: all 0.6s ease;
+}
+
+.card {
+  position: relative;
+  padding: 0;
+  margin: 20px;
+  width: 152px;
+  height: 211px;
+  opacity: 0;
+  transition: all 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+.front, .back {
+  position: absolute;
+  width: 150px;
+  height: 209px;
+  backface-visibility: hidden;
+  border-radius: 5px;
+}
+
+.front {
+  transform: rotateY(180deg);
+}
+
+.back {
+    border: 1px solid #000;
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.Bennett > .back {
+  background: url("../img/Bennett/back.jpg") center;
+}
+.Bennett > .front.base {
+  background: url("../img/Bennett/base.jpg") center;
+}
+.Bennett > .front.hitB {
+  background: url("../img/Bennett/hitB.jpg") center;
+}
+.Bennett > .front.hit2B {
+  background: url("../img/Bennett/hit2B.jpg") center;
+}
+.Bennett > .front.blockB {
+  background: url("../img/Bennett/blockB.jpg") center;
+}
+.Bennett > .front.hitG {
+  background: url("../img/Bennett/hitG.jpg") center;
+}
+.Bennett > .front.hit2G {
+  background: url("../img/Bennett/hit2G.jpg") center;
+}
+.Bennett > .front.blockG {
+  background: url("../img/Bennett/blockG.jpg") center;
+}
+.Bennett > .front.hitR {
+  background: url("../img/Bennett/hitR.jpg") center;
+}
+.Bennett > .front.hit2R {
+  background: url("../img/Bennett/hit2R.jpg") center;
+}
+.Bennett > .front.blockR {
+  background: url("../img/Bennett/blockR.jpg") center;
+}
+.Bennett > .front.clear {
+  background: url("../img/Bennett/clear.jpg") center;
+}
+.Bennett > .front.press {
+  background: url("../img/Bennett/press.jpg") center;
+}
+.Bennett > .front.freeze {
+  background: url("../img/Bennett/freeze.jpg") center;
+}
+
+.Chris > .back {
+  background: url("../img/Chris/back.jpg") center;
+}
+.Chris > .front.base {
+  background: url("../img/Chris/base.jpg") center;
+}
+.Chris > .front.hitB {
+  background: url("../img/Chris/hitB.jpg") center;
+}
+.Chris > .front.hit2B {
+  background: url("../img/Chris/hit2B.jpg") center;
+}
+.Chris > .front.blockB {
+  background: url("../img/Chris/blockB.jpg") center;
+}
+.Chris > .front.hitG {
+  background: url("../img/Chris/hitG.jpg") center;
+}
+.Chris > .front.hit2G {
+  background: url("../img/Chris/hit2G.jpg") center;
+}
+.Chris > .front.blockG {
+  background: url("../img/Chris/blockG.jpg") center;
+}
+.Chris > .front.hitR {
+  background: url("../img/Chris/hitR.jpg") center;
+}
+.Chris > .front.hit2R {
+  background: url("../img/Chris/hit2R.jpg") center;
+}
+.Chris > .front.blockR {
+  background: url("../img/Chris/blockR.jpg") center;
+}
+.Chris > .front.clear {
+  background: url("../img/Chris/clear.jpg") center;
+}
+.Chris > .front.press {
+  background: url("../img/Chris/press.jpg") center;
+}
+.Chris > .front.freeze {
+  background: url("../img/Chris/freeze.jpg") center;
+}
+
+.Darwin > .back {
+  background: url("../img/Darwin/back.jpg") center;
+}
+.Darwin > .front.base {
+  background: url("../img/Darwin/base.jpg") center;
+}
+.Darwin > .front.hitB {
+  background: url("../img/Darwin/hitB.jpg") center;
+}
+.Darwin > .front.hit2B {
+  background: url("../img/Darwin/hit2B.jpg") center;
+}
+.Darwin > .front.blockB {
+  background: url("../img/Darwin/blockB.jpg") center;
+}
+.Darwin > .front.hitG {
+  background: url("../img/Darwin/hitG.jpg") center;
+}
+.Darwin > .front.hit2G {
+  background: url("../img/Darwin/hit2G.jpg") center;
+}
+.Darwin > .front.blockG {
+  background: url("../img/Darwin/blockG.jpg") center;
+}
+.Darwin > .front.hitR {
+  background: url("../img/Darwin/hitR.jpg") center;
+}
+.Darwin > .front.hit2R {
+  background: url("../img/Darwin/hit2R.jpg") center;
+}
+.Darwin > .front.blockR {
+  background: url("../img/Darwin/blockR.jpg") center;
+}
+.Darwin > .front.clear {
+  background: url("../img/Darwin/clear.jpg") center;
+}
+.Darwin > .front.press {
+  background: url("../img/Darwin/press.jpg") center;
+}
+.Darwin > .front.freeze {
+  background: url("../img/Darwin/freeze.jpg") center;
+}
+
+.Hale > .back {
+  background: url("../img/Hale/back.jpg") center;
+}
+.Hale > .front.base {
+  background: url("../img/Hale/base.jpg") center;
+}
+.Hale > .front.hitB {
+  background: url("../img/Hale/hitB.jpg") center;
+}
+.Hale > .front.hit2B {
+  background: url("../img/Hale/hit2B.jpg") center;
+}
+.Hale > .front.blockB {
+  background: url("../img/Hale/blockB.jpg") center;
+}
+.Hale > .front.hitG {
+  background: url("../img/Hale/hitG.jpg") center;
+}
+.Hale > .front.hit2G {
+  background: url("../img/Hale/hit2G.jpg") center;
+}
+.Hale > .front.blockG {
+  background: url("../img/Hale/blockG.jpg") center;
+}
+.Hale > .front.hitR {
+  background: url("../img/Hale/hitR.jpg") center;
+}
+.Hale > .front.hit2R {
+  background: url("../img/Hale/hit2R.jpg") center;
+}
+.Hale > .front.blockR {
+  background: url("../img/Hale/blockR.jpg") center;
+}
+.Hale > .front.clear {
+  background: url("../img/Hale/clear.jpg") center;
+}
+.Hale > .front.press {
+  background: url("../img/Hale/press.jpg") center;
+}
+.Hale > .front.freeze {
+  background: url("../img/Hale/freeze.jpg") center;
+}
+
+.Morgan > .back {
+  background: url("../img/Morgan/back.jpg") center;
+}
+.Morgan > .front.base {
+  background: url("../img/Morgan/base.jpg") center;
+}
+.Morgan > .front.hitB {
+  background: url("../img/Morgan/hitB.jpg") center;
+}
+.Morgan > .front.hit2B {
+  background: url("../img/Morgan/hit2B.jpg") center;
+}
+.Morgan > .front.blockB {
+  background: url("../img/Morgan/blockB.jpg") center;
+}
+.Morgan > .front.hitG {
+  background: url("../img/Morgan/hitG.jpg") center;
+}
+.Morgan > .front.hit2G {
+  background: url("../img/Morgan/hit2G.jpg") center;
+}
+.Morgan > .front.blockG {
+  background: url("../img/Morgan/blockG.jpg") center;
+}
+.Morgan > .front.hitR {
+  background: url("../img/Morgan/hitR.jpg") center;
+}
+.Morgan > .front.hit2R {
+  background: url("../img/Morgan/hit2R.jpg") center;
+}
+.Morgan > .front.blockR {
+  background: url("../img/Morgan/blockR.jpg") center;
+}
+.Morgan > .front.clear {
+  background: url("../img/Morgan/clear.jpg") center;
+}
+.Morgan > .front.press {
+  background: url("../img/Morgan/press.jpg") center;
+}
+.Morgan > .front.freeze {
+  background: url("../img/Morgan/freeze.jpg") center;
+}
+
+.Pearl > .back {
+  background: url("../img/Pearl/back.jpg") center;
+}
+.Pearl > .front.base {
+  background: url("../img/Pearl/base.jpg") center;
+}
+.Pearl > .front.hitB {
+  background: url("../img/Pearl/hitB.jpg") center;
+}
+.Pearl > .front.hit2B {
+  background: url("../img/Pearl/hit2B.jpg") center;
+}
+.Pearl > .front.blockB {
+  background: url("../img/Pearl/blockB.jpg") center;
+}
+.Pearl > .front.hitG {
+  background: url("../img/Pearl/hitG.jpg") center;
+}
+.Pearl > .front.hit2G {
+  background: url("../img/Pearl/hit2G.jpg") center;
+}
+.Pearl > .front.blockG {
+  background: url("../img/Pearl/blockG.jpg") center;
+}
+.Pearl > .front.hitR {
+  background: url("../img/Pearl/hitR.jpg") center;
+}
+.Pearl > .front.hit2R {
+  background: url("../img/Pearl/hit2R.jpg") center;
+}
+.Pearl > .front.blockR {
+  background: url("../img/Pearl/blockR.jpg") center;
+}
+.Pearl > .front.clear {
+  background: url("../img/Pearl/clear.jpg") center;
+}
+.Pearl > .front.press {
+  background: url("../img/Pearl/press.jpg") center;
+}
+.Pearl > .front.freeze {
+  background: url("../img/Pearl/freeze.jpg") center;
+}

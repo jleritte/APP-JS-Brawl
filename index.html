@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Brawl</title>
+  <link rel="stylesheet" href="./css/Brawl.css">
+  <link rel="icon" href="./img/favicon.ico">
+</head>
+<body>
+  <input type="text">
+  <input type="button" onclick="load(this)" value="Show">
+  <div class="grid">
+  </div>
+  <!--script src="./js/Brawl.js"></script-->
+  <script>
+    var BENNETT = [7,8,0,1,3,0,1,4,0,1,6,1,3],
+        CHRIS =   [4,7,0,2,5,0,2,8,0,2,2,0,3],
+        DARWIN =  [3,4,1,3,4,0,1,8,1,3,1,3,3],
+        HALE =    [6,5,1,0,8,1,1,4,1,1,4,0,3],
+        MORGAN =  [5,8,0,4,6,0,2,2,0,1,4,0,3],
+        PEARL =   [5,7,1,1,7,1,1,1,0,1,5,2,3];
+    var CARDNAME = ['base', 'hitB', 'hit2B', 'blockB',
+                    'hitG', 'hit2G', 'blockG', 'hitR',
+                    'hit2R', 'blockR', 'clear', 'press', 'freeze'];
+    var DECKSIZE = 35;
+    var who = '',
+        grid = document.getElementsByClassName('grid')[0];
+    function load(e){
+      who = e.previousElementSibling.value;
+      console.log(who);
+      switch(who) {
+        case 'Bennett':  show(who,BENNETT);break;
+        case 'Chris':    show(who,CHRIS);break;
+        case 'Darwin':   show(who,DARWIN);break;
+        case 'Hale':     show(who,HALE);break;
+        case 'Morgan':   show(who,MORGAN);break;
+        case 'Pearl':    show(who,PEARL);break;
+        default:         alert('Not a Person!');clear();
+      }
+    }
+    function show(name,deck) {
+      var i,j;
+      clear();
+      for(i = 0; i < 13; i++){
+        for(j = 0; j < deck[i]; j++){
+          var contain = div('contain'),
+              card = div('card'),
+              front = div('front '+ CARDNAME[i]),
+              back = div('back');
+          card.appendChild(front);
+          card.appendChild(back);
+          contain.appendChild(card);
+          grid.appendChild(contain);
+        }
+      }
+      Array.prototype.forEach.call(grid.children, function(elem,i) {
+        var tmp = elem.firstElementChild;
+        elem.style.zIndex = -i*5;
+        elem.style.left = (i*5)+'px';
+        elem.style.top = 20+'px';
+        tmp.style.opacity = 1;
+        tmp.style.transform = '';
+        tmp.className = 'card '+name;
+        tmp.addEventListener('click',flip);
+      });
+    }
+    function clear(){
+      Array.prototype.forEach.call(grid.children, function(elem) {
+        grid.removeChild(elem);
+      });
+    }
+    function flip (e) {
+      e = e.target;
+      var card = e.parentElement,
+          contain = card.parentElement,
+          left = contain.style.left.replace('px',''),
+          zrotate = Math.floor(Math.random() * 360 + 1);
+      // card.className += ' flipped';
+      card.style.transform = 'rotateY(180deg) rotateZ(' + zrotate + 'deg)';
+      contain.style.left = 200+'px';
+      contain.style.top = 300+'px';
+      // setTimeout(function(){
+            contain.style.zIndex = 0;
+      // }, 10);
+    }
+    function div(clss){
+      var rtrn = document.createElement('div');
+      rtrn.className = clss;
+      return rtrn;
+    }
+  </script>
+</body>
+</html>
