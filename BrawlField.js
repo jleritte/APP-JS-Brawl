@@ -1,4 +1,4 @@
-import 'BrawlBase.js'
+require('./BrawlBase.js');
 
 function BrawlField(p1, p2) {
   var _private = {

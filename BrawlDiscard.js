@@ -1,4 +1,4 @@
-import 'BrawlCard.js';
+require('./BrawlCard.js');
 
 function BrawlDiscard() {
   var _private = {

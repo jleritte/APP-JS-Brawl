@@ -1,15 +1,15 @@
-import 'BrawlDeck.js';
-import 'BrawlDiscard.js';
-import 'BrawlField.js';
+require('./BrawlDeck.js');
+require('./BrawlDiscard.js');
+require('./BrawlField.js');
 
 function Brawl(){
   var _private = {
-    playArea = new BrawlField(1,2);
-    deck = [];
-    discard = [];
-    currentCard = [];
-    icons = [];
-    count = 0;
+    playArea: new BrawlField(1,2),
+    deck: [],
+    discard: [],
+    currentCard: [],
+    icons: [],
+    count: 0
   }
   function init() {
 
