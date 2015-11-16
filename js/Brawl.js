@@ -1,6 +1,6 @@
-require('./BrawlDeck.js');
-require('./BrawlDiscard.js');
-require('./BrawlField.js');
+var BrawlDeck = require('./BrawlDeck.js');
+    BrawlDiscard = require('./BrawlDiscard.js');
+    BrawlField = require('./BrawlField.js');
 
 function Brawl(){
   var _private = {

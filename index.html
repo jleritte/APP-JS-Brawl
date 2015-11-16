@@ -39,7 +39,7 @@
       }
     }
     function show(name,deck) {
-      var i,j;
+      var i,j, ct=0;
       clear();
       for(i = 0; i < 13; i++){
         for(j = 0; j < deck[i]; j++){
@@ -47,6 +47,7 @@
               card = div('card'),
               front = div('front '+ CARDNAME[i]),
               back = div('back');
+          console.log(ct++);
           card.appendChild(front);
           card.appendChild(back);
           contain.appendChild(card);
@@ -68,6 +69,7 @@
       Array.prototype.forEach.call(grid.children, function(elem) {
         grid.removeChild(elem);
       });
+      console.log(grid);
     }
     function flip (e) {
       e = e.target;
