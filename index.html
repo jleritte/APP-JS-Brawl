@@ -9,6 +9,7 @@
 <body>
   <input type="text">
   <input type="button" onclick="load(this)" value="Show">
+  <input type="button" onclick="clearDeck()" value="Clear">
   <div class="grid">
   </div>
   <!--script src="./js/Brawl.js"></script-->
@@ -35,19 +36,19 @@
         case 'Hale':     show(who,HALE);break;
         case 'Morgan':   show(who,MORGAN);break;
         case 'Pearl':    show(who,PEARL);break;
-        default:         alert('Not a Person!');clear();
+        default:         alert('Not a Person!');clearDeck();
       }
     }
     function show(name,deck) {
       var i,j, ct=0;
-      clear();
+      clearDeck();
       for(i = 0; i < 13; i++){
         for(j = 0; j < deck[i]; j++){
           var contain = div('contain'),
               card = div('card'),
               front = div('front '+ CARDNAME[i]),
               back = div('back');
-          console.log(ct++);
+          // console.log(ct++);
           card.appendChild(front);
           card.appendChild(back);
           contain.appendChild(card);
@@ -65,10 +66,10 @@
         tmp.addEventListener('click',flip);
       });
     }
-    function clear(){
-      Array.prototype.forEach.call(grid.children, function(elem) {
-        grid.removeChild(elem);
-      });
+    function clearDeck(){
+      while(grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+      };
       console.log(grid);
     }
     function flip (e) {
