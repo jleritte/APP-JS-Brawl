@@ -1,3 +1,39 @@
+.who > OPTION {
+  height: 50px;
+}
+.who {
+  width: 69px;
+  height: 50px;
+  border: 1px solid black;
+}
+OPTION.icon {
+  background-size: cover;
+}
+
+.icon {
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+}
+
+.icon.Bennett {
+  background-image: url("../img/Bennett/IconBennett350.jpg");
+}
+.icon.Chris {
+  background-image: url("../img/Chris/IconChris350.jpg");
+}
+.icon.Darwin {
+  background-image: url("../img/Darwin/IconDarwin350.jpg");
+}
+.icon.Hale {
+  background-image: url("../img/Hale/IconHale350.jpg");
+}
+.icon.Morgan {
+  background-image: url("../img/Morgan/IconMorgan350.jpg");
+}
+.icon.Pearl {
+  background-image: url("../img/Pearl/IconPearl350.jpg");
+}
+
 .grid{
   display: flex;
   flex-flow: row wrap;
@@ -19,6 +55,17 @@
   opacity: 0;
   transition: all 0.6s ease;
   transform-style: preserve-3d;
+  border-radius: 5px;
+}
+
+.card:hover, .card:hover .back, .card:hover .front {
+  width: 202px;
+  height: 261px;
+  background-size: 202px 261px;
+  z-index: 0;
+}
+.card:hover {
+  box-shadow: 5px 5px 10px black;
 }
 
 .front, .back {
@@ -27,6 +74,9 @@
   height: 209px;
   backface-visibility: hidden;
   border-radius: 5px;
+  background-size: 150px 209px;
+  background-repeat: no-repeat;
+  transition: all 0.6s ease;
 }
 
 .front {
@@ -42,259 +92,259 @@
 }
 
 .Bennett > .back {
-  background: url("../img/Bennett/back.jpg") center;
+  background-image: url("../img/Bennett/back.jpg");
 }
 .Bennett > .front.base {
-  background: url("../img/Bennett/base.jpg") center;
+  background-image: url("../img/Bennett/base.jpg");
 }
 .Bennett > .front.hitB {
-  background: url("../img/Bennett/hitB.jpg") center;
+  background-image: url("../img/Bennett/hitB.jpg");
 }
 .Bennett > .front.hit2B {
-  background: url("../img/Bennett/hit2B.jpg") center;
+  background-image: url("../img/Bennett/hit2B.jpg");
 }
 .Bennett > .front.blockB {
-  background: url("../img/Bennett/blockB.jpg") center;
+  background-image: url("../img/Bennett/blockB.jpg");
 }
 .Bennett > .front.hitG {
-  background: url("../img/Bennett/hitG.jpg") center;
+  background-image: url("../img/Bennett/hitG.jpg");
 }
 .Bennett > .front.hit2G {
-  background: url("../img/Bennett/hit2G.jpg") center;
+  background-image: url("../img/Bennett/hit2G.jpg");
 }
 .Bennett > .front.blockG {
-  background: url("../img/Bennett/blockG.jpg") center;
+  background-image: url("../img/Bennett/blockG.jpg");
 }
 .Bennett > .front.hitR {
-  background: url("../img/Bennett/hitR.jpg") center;
+  background-image: url("../img/Bennett/hitR.jpg");
 }
 .Bennett > .front.hit2R {
-  background: url("../img/Bennett/hit2R.jpg") center;
+  background-image: url("../img/Bennett/hit2R.jpg");
 }
 .Bennett > .front.blockR {
-  background: url("../img/Bennett/blockR.jpg") center;
+  background-image: url("../img/Bennett/blockR.jpg");
 }
 .Bennett > .front.clear {
-  background: url("../img/Bennett/clear.jpg") center;
+  background-image: url("../img/Bennett/clear.jpg");
 }
 .Bennett > .front.press {
-  background: url("../img/Bennett/press.jpg") center;
+  background-image: url("../img/Bennett/press.jpg");
 }
 .Bennett > .front.freeze {
-  background: url("../img/Bennett/freeze.jpg") center;
+  background-image: url("../img/Bennett/freeze.jpg");
 }
 
 .Chris > .back {
-  background: url("../img/Chris/back.jpg") center;
+  background-image: url("../img/Chris/back.jpg");
 }
 .Chris > .front.base {
-  background: url("../img/Chris/base.jpg") center;
+  background-image: url("../img/Chris/base.jpg");
 }
 .Chris > .front.hitB {
-  background: url("../img/Chris/hitB.jpg") center;
+  background-image: url("../img/Chris/hitB.jpg");
 }
 .Chris > .front.hit2B {
-  background: url("../img/Chris/hit2B.jpg") center;
+  background-image: url("../img/Chris/hit2B.jpg");
 }
 .Chris > .front.blockB {
-  background: url("../img/Chris/blockB.jpg") center;
+  background-image: url("../img/Chris/blockB.jpg");
 }
 .Chris > .front.hitG {
-  background: url("../img/Chris/hitG.jpg") center;
+  background-image: url("../img/Chris/hitG.jpg");
 }
 .Chris > .front.hit2G {
-  background: url("../img/Chris/hit2G.jpg") center;
+  background-image: url("../img/Chris/hit2G.jpg");
 }
 .Chris > .front.blockG {
-  background: url("../img/Chris/blockG.jpg") center;
+  background-image: url("../img/Chris/blockG.jpg");
 }
 .Chris > .front.hitR {
-  background: url("../img/Chris/hitR.jpg") center;
+  background-image: url("../img/Chris/hitR.jpg");
 }
 .Chris > .front.hit2R {
-  background: url("../img/Chris/hit2R.jpg") center;
+  background-image: url("../img/Chris/hit2R.jpg");
 }
 .Chris > .front.blockR {
-  background: url("../img/Chris/blockR.jpg") center;
+  background-image: url("../img/Chris/blockR.jpg");
 }
 .Chris > .front.clear {
-  background: url("../img/Chris/clear.jpg") center;
+  background-image: url("../img/Chris/clear.jpg");
 }
 .Chris > .front.press {
-  background: url("../img/Chris/press.jpg") center;
+  background-image: url("../img/Chris/press.jpg");
 }
 .Chris > .front.freeze {
-  background: url("../img/Chris/freeze.jpg") center;
+  background-image: url("../img/Chris/freeze.jpg");
 }
 
 .Darwin > .back {
-  background: url("../img/Darwin/back.jpg") center;
+  background-image: url("../img/Darwin/back.jpg");
 }
 .Darwin > .front.base {
-  background: url("../img/Darwin/base.jpg") center;
+  background-image: url("../img/Darwin/base.jpg");
 }
 .Darwin > .front.hitB {
-  background: url("../img/Darwin/hitB.jpg") center;
+  background-image: url("../img/Darwin/hitB.jpg");
 }
 .Darwin > .front.hit2B {
-  background: url("../img/Darwin/hit2B.jpg") center;
+  background-image: url("../img/Darwin/hit2B.jpg");
 }
 .Darwin > .front.blockB {
-  background: url("../img/Darwin/blockB.jpg") center;
+  background-image: url("../img/Darwin/blockB.jpg");
 }
 .Darwin > .front.hitG {
-  background: url("../img/Darwin/hitG.jpg") center;
+  background-image: url("../img/Darwin/hitG.jpg");
 }
 .Darwin > .front.hit2G {
-  background: url("../img/Darwin/hit2G.jpg") center;
+  background-image: url("../img/Darwin/hit2G.jpg");
 }
 .Darwin > .front.blockG {
-  background: url("../img/Darwin/blockG.jpg") center;
+  background-image: url("../img/Darwin/blockG.jpg");
 }
 .Darwin > .front.hitR {
-  background: url("../img/Darwin/hitR.jpg") center;
+  background-image: url("../img/Darwin/hitR.jpg");
 }
 .Darwin > .front.hit2R {
-  background: url("../img/Darwin/hit2R.jpg") center;
+  background-image: url("../img/Darwin/hit2R.jpg");
 }
 .Darwin > .front.blockR {
-  background: url("../img/Darwin/blockR.jpg") center;
+  background-image: url("../img/Darwin/blockR.jpg");
 }
 .Darwin > .front.clear {
-  background: url("../img/Darwin/clear.jpg") center;
+  background-image: url("../img/Darwin/clear.jpg");
 }
 .Darwin > .front.press {
-  background: url("../img/Darwin/press.jpg") center;
+  background-image: url("../img/Darwin/press.jpg");
 }
 .Darwin > .front.freeze {
-  background: url("../img/Darwin/freeze.jpg") center;
+  background-image: url("../img/Darwin/freeze.jpg");
 }
 
 .Hale > .back {
-  background: url("../img/Hale/back.jpg") center;
+  background-image: url("../img/Hale/back.jpg");
 }
 .Hale > .front.base {
-  background: url("../img/Hale/base.jpg") center;
+  background-image: url("../img/Hale/base.jpg");
 }
 .Hale > .front.hitB {
-  background: url("../img/Hale/hitB.jpg") center;
+  background-image: url("../img/Hale/hitB.jpg");
 }
 .Hale > .front.hit2B {
-  background: url("../img/Hale/hit2B.jpg") center;
+  background-image: url("../img/Hale/hit2B.jpg");
 }
 .Hale > .front.blockB {
-  background: url("../img/Hale/blockB.jpg") center;
+  background-image: url("../img/Hale/blockB.jpg");
 }
 .Hale > .front.hitG {
-  background: url("../img/Hale/hitG.jpg") center;
+  background-image: url("../img/Hale/hitG.jpg");
 }
 .Hale > .front.hit2G {
-  background: url("../img/Hale/hit2G.jpg") center;
+  background-image: url("../img/Hale/hit2G.jpg");
 }
 .Hale > .front.blockG {
-  background: url("../img/Hale/blockG.jpg") center;
+  background-image: url("../img/Hale/blockG.jpg");
 }
 .Hale > .front.hitR {
-  background: url("../img/Hale/hitR.jpg") center;
+  background-image: url("../img/Hale/hitR.jpg");
 }
 .Hale > .front.hit2R {
-  background: url("../img/Hale/hit2R.jpg") center;
+  background-image: url("../img/Hale/hit2R.jpg");
 }
 .Hale > .front.blockR {
-  background: url("../img/Hale/blockR.jpg") center;
+  background-image: url("../img/Hale/blockR.jpg");
 }
 .Hale > .front.clear {
-  background: url("../img/Hale/clear.jpg") center;
+  background-image: url("../img/Hale/clear.jpg");
 }
 .Hale > .front.press {
-  background: url("../img/Hale/press.jpg") center;
+  background-image: url("../img/Hale/press.jpg");
 }
 .Hale > .front.freeze {
-  background: url("../img/Hale/freeze.jpg") center;
+  background-image: url("../img/Hale/freeze.jpg");
 }
 
 .Morgan > .back {
-  background: url("../img/Morgan/back.jpg") center;
+  background-image: url("../img/Morgan/back.jpg");
 }
 .Morgan > .front.base {
-  background: url("../img/Morgan/base.jpg") center;
+  background-image: url("../img/Morgan/base.jpg");
 }
 .Morgan > .front.hitB {
-  background: url("../img/Morgan/hitB.jpg") center;
+  background-image: url("../img/Morgan/hitB.jpg");
 }
 .Morgan > .front.hit2B {
-  background: url("../img/Morgan/hit2B.jpg") center;
+  background-image: url("../img/Morgan/hit2B.jpg");
 }
 .Morgan > .front.blockB {
-  background: url("../img/Morgan/blockB.jpg") center;
+  background-image: url("../img/Morgan/blockB.jpg");
 }
 .Morgan > .front.hitG {
-  background: url("../img/Morgan/hitG.jpg") center;
+  background-image: url("../img/Morgan/hitG.jpg");
 }
 .Morgan > .front.hit2G {
-  background: url("../img/Morgan/hit2G.jpg") center;
+  background-image: url("../img/Morgan/hit2G.jpg");
 }
 .Morgan > .front.blockG {
-  background: url("../img/Morgan/blockG.jpg") center;
+  background-image: url("../img/Morgan/blockG.jpg");
 }
 .Morgan > .front.hitR {
-  background: url("../img/Morgan/hitR.jpg") center;
+  background-image: url("../img/Morgan/hitR.jpg");
 }
 .Morgan > .front.hit2R {
-  background: url("../img/Morgan/hit2R.jpg") center;
+  background-image: url("../img/Morgan/hit2R.jpg");
 }
 .Morgan > .front.blockR {
-  background: url("../img/Morgan/blockR.jpg") center;
+  background-image: url("../img/Morgan/blockR.jpg");
 }
 .Morgan > .front.clear {
-  background: url("../img/Morgan/clear.jpg") center;
+  background-image: url("../img/Morgan/clear.jpg");
 }
 .Morgan > .front.press {
-  background: url("../img/Morgan/press.jpg") center;
+  background-image: url("../img/Morgan/press.jpg");
 }
 .Morgan > .front.freeze {
-  background: url("../img/Morgan/freeze.jpg") center;
+  background-image: url("../img/Morgan/freeze.jpg");
 }
 
 .Pearl > .back {
-  background: url("../img/Pearl/back.jpg") center;
+  background-image: url("../img/Pearl/back.jpg");
 }
 .Pearl > .front.base {
-  background: url("../img/Pearl/base.jpg") center;
+  background-image: url("../img/Pearl/base.jpg");
 }
 .Pearl > .front.hitB {
-  background: url("../img/Pearl/hitB.jpg") center;
+  background-image: url("../img/Pearl/hitB.jpg");
 }
 .Pearl > .front.hit2B {
-  background: url("../img/Pearl/hit2B.jpg") center;
+  background-image: url("../img/Pearl/hit2B.jpg");
 }
 .Pearl > .front.blockB {
-  background: url("../img/Pearl/blockB.jpg") center;
+  background-image: url("../img/Pearl/blockB.jpg");
 }
 .Pearl > .front.hitG {
-  background: url("../img/Pearl/hitG.jpg") center;
+  background-image: url("../img/Pearl/hitG.jpg");
 }
 .Pearl > .front.hit2G {
-  background: url("../img/Pearl/hit2G.jpg") center;
+  background-image: url("../img/Pearl/hit2G.jpg");
 }
 .Pearl > .front.blockG {
-  background: url("../img/Pearl/blockG.jpg") center;
+  background-image: url("../img/Pearl/blockG.jpg");
 }
 .Pearl > .front.hitR {
-  background: url("../img/Pearl/hitR.jpg") center;
+  background-image: url("../img/Pearl/hitR.jpg");
 }
 .Pearl > .front.hit2R {
-  background: url("../img/Pearl/hit2R.jpg") center;
+  background-image: url("../img/Pearl/hit2R.jpg");
 }
 .Pearl > .front.blockR {
-  background: url("../img/Pearl/blockR.jpg") center;
+  background-image: url("../img/Pearl/blockR.jpg");
 }
 .Pearl > .front.clear {
-  background: url("../img/Pearl/clear.jpg") center;
+  background-image: url("../img/Pearl/clear.jpg");
 }
 .Pearl > .front.press {
-  background: url("../img/Pearl/press.jpg") center;
+  background-image: url("../img/Pearl/press.jpg");
 }
 .Pearl > .front.freeze {
-  background: url("../img/Pearl/freeze.jpg") center;
+  background-image: url("../img/Pearl/freeze.jpg");
 }

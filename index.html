@@ -7,10 +7,226 @@
   <link rel="icon" href="./img/favicon.ico">
 </head>
 <body>
-  <input type="text">
-  <input type="button" onclick="load(this)" value="Show">
+  <select class="who icon">
+    <option class="icon Bennett" value="Bennett"></option>
+    <option class="icon Chris" value="Chris"></option>
+    <option class="icon Darwin" value="Darwin"></option>
+    <option class="icon Hale" value="Hale"></option>
+    <option class="icon Morgan" value="Morgan"></option>
+    <option class="icon Pearl" value="Pearl"></option>
+  </select>
   <input type="button" onclick="clearDeck()" value="Clear">
   <div class="grid">
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
+    <div class="contain">
+      <div>
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
+    </div>
   </div>
   <!--script src="./js/Brawl.js"></script-->
   <script>
@@ -25,9 +241,14 @@
                     'hit2R', 'blockR', 'clear', 'press', 'freeze'];
     var DECKSIZE = 35;
     var who = '',
-        grid = document.getElementsByClassName('grid')[0];
-    function load(e){
-      who = e.previousElementSibling.value;
+        grid = document.getElementsByClassName('grid')[0],
+        who = document.getElementsByClassName('who')[0],
+        change = new Event('change');
+    who.addEventListener('change',loadDeck);
+    who.dispatchEvent(change);
+    function loadDeck(e){
+      who = e.target.value;
+      e.target.className = 'who icon '+who;
       console.log(who);
       switch(who) {
         case 'Bennett':  show(who,BENNETT);break;
@@ -41,50 +262,41 @@
     }
     function show(name,deck) {
       var i,j, ct=0;
-      clearDeck();
       for(i = 0; i < 13; i++){
         for(j = 0; j < deck[i]; j++){
-          var contain = div('contain'),
-              card = div('card'),
-              front = div('front '+ CARDNAME[i]),
-              back = div('back');
-          // console.log(ct++);
-          card.appendChild(front);
-          card.appendChild(back);
-          contain.appendChild(card);
-          grid.appendChild(contain);
+          var front = grid.children[ct].firstElementChild.firstElementChild;
+          front.className = 'front ' + CARDNAME[i];
+          ct++;
         }
       }
+      ct = 0;
       Array.prototype.forEach.call(grid.children, function(elem,i) {
         var tmp = elem.firstElementChild;
-        elem.style.zIndex = -i*5;
+        elem.style.zIndex = -(i+1)*5;
         elem.style.left = (i*5)+'px';
-        elem.style.top = 20+'px';
+        elem.style.top = 51+'px';
         tmp.style.opacity = 1;
         tmp.style.transform = '';
         tmp.className = 'card '+name;
         tmp.addEventListener('click',flip);
+        ct++
       });
     }
     function clearDeck(){
-      while(grid.firstChild) {
-        grid.removeChild(grid.firstChild);
-      };
-      console.log(grid);
+      Array.prototype.forEach.call(grid.children, function(elem,i) {
+        elem.style.opacity = 0;
+      });
     }
     function flip (e) {
       e = e.target;
       var card = e.parentElement,
           contain = card.parentElement,
           left = contain.style.left.replace('px',''),
-          zrotate = Math.floor(Math.random() * 360 + 1);
-      // card.className += ' flipped';
+          zrotate = Math.floor(Math.random() *360);//* 10 + 90);
+      contain.style.zIndex = 0;
       card.style.transform = 'rotateY(180deg) rotateZ(' + zrotate + 'deg)';
       contain.style.left = 200+'px';
       contain.style.top = 300+'px';
-      // setTimeout(function(){
-            contain.style.zIndex = 0;
-      // }, 10);
     }
     function div(clss){
       var rtrn = document.createElement('div');
