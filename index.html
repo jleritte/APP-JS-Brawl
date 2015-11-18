@@ -15,6 +15,7 @@
     <option class="icon Morgan" value="Morgan"></option>
     <option class="icon Pearl" value="Pearl"></option>
   </select>
+  <input type="button" onclick="who.dispatchEvent(change)" value="Shuffle">
   <input type="button" onclick="clearDeck()" value="Clear">
   <div class="grid">
     <div class="contain">
@@ -240,14 +241,13 @@
                     'hitG', 'hit2G', 'blockG', 'hitR',
                     'hit2R', 'blockR', 'clear', 'press', 'freeze'];
     var DECKSIZE = 35;
-    var who = '',
-        grid = document.getElementsByClassName('grid')[0],
+    var grid = document.getElementsByClassName('grid')[0],
         who = document.getElementsByClassName('who')[0],
         change = new Event('change');
     who.addEventListener('change',loadDeck);
     who.dispatchEvent(change);
     function loadDeck(e){
-      who = e.target.value;
+      var who = e.target.value;
       e.target.className = 'who icon '+who;
       console.log(who);
       switch(who) {
@@ -260,16 +260,31 @@
         default:         alert('Not a Person!');clearDeck();
       }
     }
-    function show(name,deck) {
-      var i,j, ct=0;
+    function buildLabels(deck) {
+      var i,j, ct=0, bd=[];
       for(i = 0; i < 13; i++){
         for(j = 0; j < deck[i]; j++){
           var front = grid.children[ct].firstElementChild.firstElementChild;
-          front.className = 'front ' + CARDNAME[i];
+          bd[ct] = CARDNAME[i];
           ct++;
         }
       }
-      ct = 0;
+      return bd;
+    }
+    function _shuffle(deck) {
+      for(var i = 31; i > 0; i--) {
+        var rand = Math.floor(Math.random() * (i + 1));
+        if(rand > 0) {
+          temp = deck[i];
+          deck[i] = deck[rand];
+          deck[rand] = temp;
+        }
+      }
+      return deck;
+    }
+    function show(name,deck) {
+      var deck = buildLabels(deck), ct = 0;
+      deck = _shuffle(deck);
       Array.prototype.forEach.call(grid.children, function(elem,i) {
         var tmp = elem.firstElementChild;
         elem.style.zIndex = -(i+1)*5;
@@ -277,8 +292,9 @@
         elem.style.top = 51+'px';
         tmp.style.opacity = 1;
         tmp.style.transform = '';
-        tmp.className = 'card '+name;
+        tmp.className = 'deck card '+name;
         tmp.addEventListener('click',flip);
+        tmp.firstElementChild.className = 'front '+deck[i];
         ct++
       });
     }
@@ -295,6 +311,7 @@
           zrotate = Math.floor(Math.random() *360);//* 10 + 90);
       contain.style.zIndex = 0;
       card.style.transform = 'rotateY(180deg) rotateZ(' + zrotate + 'deg)';
+      card.className = card.className.replace('deck','');
       contain.style.left = 200+'px';
       contain.style.top = 300+'px';
     }

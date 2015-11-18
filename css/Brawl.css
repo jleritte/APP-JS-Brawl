@@ -58,13 +58,13 @@ OPTION.icon {
   border-radius: 5px;
 }
 
-.card:hover, .card:hover .back, .card:hover .front {
-  width: 202px;
-  height: 261px;
-  background-size: 202px 261px;
+.deck:hover, .deck:hover .back, .deck:hover .front {
+  width: 162px;
+  height: 221px;
+  background-size: 162px 221px;
   z-index: 0;
 }
-.card:hover {
+.deck:hover {
   box-shadow: 5px 5px 10px black;
 }
 
