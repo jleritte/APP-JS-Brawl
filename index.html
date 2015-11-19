@@ -8,14 +8,22 @@
 </head>
 <body>
   <div class="menu">
-    <select class="who icon">
-      <option class="icon Bennett" value="Bennett"></option>
-      <option class="icon Chris" value="Chris"></option>
-      <option class="icon Darwin" value="Darwin"></option>
-      <option class="icon Hale" value="Hale"></option>
-      <option class="icon Morgan" value="Morgan"></option>
-      <option class="icon Pearl" value="Pearl"></option>
+    <select class="who blank">
+      <option value="Bennett"></option>
+      <option value="Chris"></option>
+      <option value="Darwin"></option>
+      <option value="Hale"></option>
+      <option value="Morgan"></option>
+      <option value="Pearl"></option>
     </select>
+    <div class="select icon" onclick="selectDeck(event)">
+      <div class="icon Bennett" value="Bennett"></div>
+      <div class="icon Chris" value="Chris"></div>
+      <div class="icon Darwin" value="Darwin"></div>
+      <div class="icon Hale" value="Hale"></div>
+      <div class="icon Morgan" value="Morgan"></div>
+      <div class="icon Pearl" value="Pearl"></div>
+    </div>
     <div class="buttonBox">
       <input type="button" onclick="who.dispatchEvent(change)" value="Shuffle">
     </div>
@@ -235,12 +243,13 @@
       </div>
     </div>
   </div>
-  <span class="Bennett" style="visibility:hidden"><span class="back"></span></span>
-  <span class="Chris" style="visibility:hidden"><span class="back"></span></span>
-  <span class="Darwin" style="visibility:hidden"><span class="back"></span></span>
-  <span class="Hale" style="visibility:hidden"><span class="back"></span></span>
-  <span class="Morgan" style="visibility:hidden"><span class="back"></span></span>
-  <span class="Pearl" style="visibility:hidden"><span class="back"></span></span>
+  <div class="discard"></div>
+  <span class="Bennett blank"><span class="back"></span></span>
+  <span class="Chris blank"><span class="back"></span></span>
+  <span class="Darwin blank"><span class="back"></span></span>
+  <span class="Hale blank"><span class="back"></span></span>
+  <span class="Morgan blank"><span class="back"></span></span>
+  <span class="Pearl blank"><span class="back"></span></span>
   <!--script src="./js/Brawl.js"></script-->
   <script>
     var BENNETT = [7,8,0,1,3,0,1,4,0,1,6,1,3],
@@ -257,17 +266,36 @@
         who = document.getElementsByClassName('who')[0],
         change = new Event('change'),
         hover = new Event('hover'),
-        click = new Event('click');
+        click = new Event('click'),
+        cdCt = 0;
+
     who.addEventListener('change',loadDeck);
     who.dispatchEvent(change);
-    function loadDeck(e){
-      var who = e.target.value;
-      e.target.className = 'who icon '+who;
+
+    function selectDeck(e) {
+      var who = e.target.className.replace('icon ',''),
+          select = e.target.parentElement;
       Array.prototype.forEach.call(window.who.children, function(option,i) {
-        if(option.className === 'icon '+who){
-          option.style.display = 'none';
-        } else if (option.style.display == 'none') {
-          option.style.display = 'block';
+        if(option.selected === true){
+          option.selected = false;
+        }
+        if (option.value == who) {
+          option.selected = true;
+        }
+      });
+      window.who.dispatchEvent(change);
+    }
+
+    function loadDeck(e){
+      var who = e.target.value,
+          select = e.target.nextElementSibling;
+      select.className = 'select icon '+who;
+      select.setAttribute('value',who);
+      Array.prototype.forEach.call(select.children,function(elem) {
+        if(elem.className.substr(0,5) === 'blank'){
+          elem.className = elem.className.replace('blank','icon');
+        } else if(elem.className === 'icon '+who) {
+          elem.className = elem.className.replace('icon','blank');
         }
       });
       console.log(who);
@@ -281,6 +309,7 @@
         default:         alert('Not a Person!');clearDeck();
       }
     }
+
     function buildLabels(deck) {
       var i,j, ct=0, bd=[];
       for(i = 0; i < 13; i++){
@@ -292,6 +321,7 @@
       }
       return bd;
     }
+
     function _shuffle(deck) {
       for(var i = 31; i > 0; i--) {
         var rand = Math.floor(Math.random() * (i + 1));
@@ -303,8 +333,10 @@
       }
       return deck;
     }
+
     function show(name,deck) {
-      var deck = buildLabels(deck), ct = 0;
+      var deck = buildLabels(deck), ct = 0,
+          discard = document.getElementsByClassName('discard')[0];
       deck = _shuffle(deck);
       Array.prototype.forEach.call(grid.children, function(contain,i) {
         var card = contain.firstElementChild, lt;
@@ -321,37 +353,33 @@
         }
         contain.style.zIndex = 170-i*5;
         contain.style.left = (lt*5+105)+'px';
-        contain.style.top = 0;
+        contain.style.top = -15+'px';
         card.style.opacity = 1;
         card.style.transform = '';
         card.className = 'deck card '+name;
-        card.addEventListener('click',flip);
         card.firstElementChild.className = 'front '+deck[i];
         ct++;
       });
-      grid.children[0].firstElementChild.dispatchEvent(click);
+      discard.addEventListener('click',flip);
+      discard.dispatchEvent(click);
     }
+
     function clearDeck(){
       Array.prototype.forEach.call(grid.children, function(contain,i) {
         contain.firstElementChild.style.opacity = 0;
       });
     }
+
     function flip (e) {
-      e = e.target;
-      var card = e.className === 'back'?e.parentElement:e,
-          contain = card.parentElement,
+      var contain = grid.children[cdCt],
+          card = contain.firstElementChild,
           left = contain.style.left.replace('px',''),
           zrotate = Math.floor(Math.random() *360);//* 10 + 90);
       card.style.transform = 'rotateY(180deg)';//' rotateZ(' + zrotate + 'deg)';
       card.className = card.className.replace('deck','');
       contain.style.left = 300+'px';
       contain.style.zIndex = 0;
-      card.removeEventListener('click',flip);
-    }
-    function div(clss){
-      var rtrn = document.createElement('div');
-      rtrn.className = clss;
-      return rtrn;
+      cdCt++;
     }
   </script>
 </body>

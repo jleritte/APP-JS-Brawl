@@ -1,19 +1,25 @@
+* {
+  font-family: sans-serif;
+}
+.blank {
+  visibility: hidden;
+  display: none;
+}
 INPUT[type=button] {
   border: 0;
   color: #f39c12;
   background: #f1c40f;
-  width: 98px;
+  width: 100px;
 }
 INPUT[type=button]:active {
   color: #f1c40f;
   background: #f39c12;
 }
 .buttonBox {
-  width: 98px;
+  width: 100px;
   border: 1px solid black;
-  border-top: 0;
+  border-top-width: 0;
 }
-
 .menu {
   display: flex;
   flex-flow: column;
@@ -21,17 +27,41 @@ INPUT[type=button]:active {
   margin-right: 5px;
 }
 
-.who > OPTION {
-  height: 100px;
-  display: block;
-}
-.who {
+.select {
   width: 100px;
   height: 100px;
   border: 1px solid black;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
+}
+.select:hover > .icon {
+  display:block;
+  
+}
+.select:hover > .icon:hover:after {
+  opacity: 0;
+}
+.select > .icon {
+  position: relative;
+  top:101px;
+  height: 100px;
+  display: none;
+  border: 1px solid black;
+  border-top: 0;
+}
+.select > .icon:after {
+  content: ' ';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(0,0,0,0.5);
+}
+.select:before, .select > .icon:before {
+  content: attr(value);
+  position: absolute;
+  font-weight: bold;
+  line-height: 180px;
+  text-align: center;
+  text-shadow: 1px 0 #FFF, 0 1px #FFF, -1px 0 #FFF, 0 -1px #FFF;
+  width:100px;
 }
 
 .icon {
@@ -86,10 +116,11 @@ INPUT[type=button]:active {
   width: 162px;
   height: 221px;
   background-size: 162px 221px;
-  /*z-index: 1000;*/
 }
 .deck:hover {
   box-shadow: 5px 5px 10px black;
+  left:-5px;
+  top: -5px;
 }
 
 .front, .back {
@@ -114,6 +145,21 @@ INPUT[type=button]:active {
 .flipped {
   transform: rotateY(180deg);
 }
+
+.discard {
+  border: 1px solid black;
+  height: 221px;
+  left: 315px;
+  position: absolute;
+  top: 0;
+  width: 162px;
+  z-index: 10;
+}
+
+
+
+
+
 
 .Bennett > .back {
   background-image: url("../img/Bennett/back.jpg");
