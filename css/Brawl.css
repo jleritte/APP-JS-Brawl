@@ -18,7 +18,7 @@ INPUT[type=button]:active {
 .buttonBox {
   width: 100px;
   border: 1px solid black;
-  border-top-width: 0;
+  border-bottom-width: 0;
 }
 .menu {
   display: flex;

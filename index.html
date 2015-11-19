@@ -8,6 +8,12 @@
 </head>
 <body>
   <div class="menu">
+    <div class="buttonBox">
+      <input type="button" onclick="who.dispatchEvent(change)" value="Shuffle">
+    </div>
+    <div class="buttonBox">
+      <input type="button" onclick="clearDeck()" value="Clear">
+    </div>
     <select class="who blank">
       <option value="Bennett"></option>
       <option value="Chris"></option>
@@ -23,12 +29,6 @@
       <div class="icon Hale" value="Hale"></div>
       <div class="icon Morgan" value="Morgan"></div>
       <div class="icon Pearl" value="Pearl"></div>
-    </div>
-    <div class="buttonBox">
-      <input type="button" onclick="who.dispatchEvent(change)" value="Shuffle">
-    </div>
-    <div class="buttonBox">
-      <input type="button" onclick="clearDeck()" value="Clear">
     </div>
   </div>
   <div class="grid">
@@ -358,10 +358,11 @@
         card.style.transform = '';
         card.className = 'card '+name;
         card.firstElementChild.className = 'front '+deck[i];
+        card.addEventListener('click',flip);
         ct++;
       });
-      discard.addEventListener('click',flip);
-      discard.dispatchEvent(click);
+      cdCt = 0;
+      grid.children[0].firstElementChild.dispatchEvent(click);
     }
 
     function clearDeck(){
@@ -370,7 +371,7 @@
       });
     }
 
-    function flip (e) {
+    function flip() {
       var contain = grid.children[cdCt],
           card = contain.firstElementChild,
           left = contain.style.left.replace('px',''),
@@ -379,7 +380,7 @@
       card.className += ' deck';
       contain.style.left = 300+'px';
       contain.style.zIndex = 0;
-      card.addEventListener('click',flip);
+      card.removeEventListener('click',flip);
       cdCt++;
     }
   </script>
