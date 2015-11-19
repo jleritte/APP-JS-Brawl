@@ -356,7 +356,7 @@
         contain.style.top = -15+'px';
         card.style.opacity = 1;
         card.style.transform = '';
-        card.className = 'deck card '+name;
+        card.className = 'card '+name;
         card.firstElementChild.className = 'front '+deck[i];
         ct++;
       });
@@ -376,9 +376,10 @@
           left = contain.style.left.replace('px',''),
           zrotate = Math.floor(Math.random() *360);//* 10 + 90);
       card.style.transform = 'rotateY(180deg)';//' rotateZ(' + zrotate + 'deg)';
-      card.className = card.className.replace('deck','');
+      card.className += ' deck';
       contain.style.left = 300+'px';
       contain.style.zIndex = 0;
+      card.addEventListener('click',flip);
       cdCt++;
     }
   </script>
