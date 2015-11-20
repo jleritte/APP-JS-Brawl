@@ -266,7 +266,6 @@
     var grid = document.getElementsByClassName('grid')[0],
         who = document.getElementsByClassName('who')[0],
         change = new Event('change'),
-        hover = new Event('hover'),
         click = new Event('click'),
         cdCt = 0;
 
@@ -293,25 +292,29 @@
     function loadDeck(e){
       var who = e.target.value,
           select = e.target.nextElementSibling;
-      select.className = 'select icon '+who;
-      select.setAttribute('value',who);
-      Array.prototype.forEach.call(select.children,function(elem) {
-        if(elem.className.substr(0,5) === 'blank'){
-          elem.className = elem.className.replace('blank','icon');
-        } else if(elem.className === 'icon '+who) {
-          elem.className = elem.className.replace('icon','blank');
+      clearDeck();
+      setTimeout(function(){
+        select.className = 'select icon '+who;
+        select.setAttribute('value',who);
+        Array.prototype.forEach.call(select.children,function(elem) {
+          if(elem.className.substr(0,5) === 'blank'){
+            elem.className = elem.className.replace('blank','icon');
+          }
+          if(elem.className === 'icon '+who) {
+            elem.className = elem.className.replace('icon','blank');
+          }
+        });
+        console.log(who);
+        switch(who) {
+          case 'Bennett':  show(who,BENNETT);break;
+          case 'Chris':    show(who,CHRIS);break;
+          case 'Darwin':   show(who,DARWIN);break;
+          case 'Hale':     show(who,HALE);break;
+          case 'Morgan':   show(who,MORGAN);break;
+          case 'Pearl':    show(who,PEARL);break;
+          default:         alert('Not a Person!');clearDeck();
         }
-      });
-      // console.log(who);
-      switch(who) {
-        case 'Bennett':  show(who,BENNETT);break;
-        case 'Chris':    show(who,CHRIS);break;
-        case 'Darwin':   show(who,DARWIN);break;
-        case 'Hale':     show(who,HALE);break;
-        case 'Morgan':   show(who,MORGAN);break;
-        case 'Pearl':    show(who,PEARL);break;
-        default:         alert('Not a Person!');clearDeck();
-      }
+      },100);
     }
 
     function buildLabels(deck) {
@@ -339,39 +342,50 @@
     }
 
     function show(name,deck) {
-      var deck = buildLabels(deck), ct = 0,
+      var deck = buildLabels(deck),i,
           discard = document.getElementsByClassName('discard')[0];
       deck = _shuffle(deck);
       Array.prototype.forEach.call(grid.children, function(contain,i) {
         var card = contain.firstElementChild, lt;
-        if (ct < 7){
+        if (i < 7){
           lt = 0;
-        } else if (ct < 14) {
+        } else if (i < 14) {
           lt = 1;
-        } else if (ct < 21) {
+        } else if (i < 21) {
           lt = 2;
-        } else if (ct < 28) {
+        } else if (i < 28) {
           lt = 3;
-        } else if (ct < 35) {
+        } else if (i < 35) {
           lt = 4;
         }
-        contain.style.zIndex = 170-i*5;
-        contain.style.left = (lt*5+105)+'px';
-        contain.style.top = -15+'px';
-        card.style.opacity = 1;
-        card.style.transform = '';
-        card.className = 'card '+name;
-        card.firstElementChild.className = 'front '+deck[i];
-        card.addEventListener('click',flip);
-        ct++;
+        setTimeout(function(){
+          contain.style.zIndex = 170-i*5;
+          contain.style.left = (lt*5+105)+'px';
+          contain.style.top = -15+'px';
+          card.style.opacity = 1;
+          card.style.transform = '';
+          card.className = 'card '+name;
+          card.firstElementChild.className = 'front '+deck[i];
+          card.addEventListener('click',flip);
+        },50*(36-i));
       });
       cdCt = 0;
-      grid.children[0].firstElementChild.dispatchEvent(click);
+      setTimeout(function(){grid.children[0].firstElementChild.dispatchEvent(click);},2750);
     }
 
     function clearDeck(){
+      var select = document.getElementsByClassName('select')[0];
+      select.className = 'select icon Empty';
+      select.setAttribute('value','');
+      Array.prototype.forEach.call(select.children,function(elem) {
+        if(elem.className.substr(0,5) === 'blank'){
+          elem.className = elem.className.replace('blank','icon');
+        }
+      });
       Array.prototype.forEach.call(grid.children, function(contain,i) {
         contain.firstElementChild.style.opacity = 0;
+          contain.style.top = -300+'px';
+          contain.style.left = 0;
       });
     }
 
@@ -380,6 +394,7 @@
           card = contain.firstElementChild,
           left = contain.style.left.replace('px',''),
           zrotate = Math.floor(Math.random() *360);//* 10 + 90);
+      console.log('flip');
       card.style.transform = 'rotateY(180deg)';//' rotateZ(' + zrotate + 'deg)';
       card.className += ' deck';
       contain.style.left = 300+'px';
