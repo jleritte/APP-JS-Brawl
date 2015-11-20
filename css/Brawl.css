@@ -1,6 +1,9 @@
 * {
   font-family: sans-serif;
 }
+BODY {
+  background: #d35400;
+}
 .blank {
   display: none;
 }
@@ -160,11 +163,13 @@ INPUT[type=button]:active {
 }
 .deckLanding {
   background: linear-gradient(125deg, rgba(0,0,0,0) 49%,rgba(255,0,0,1) 50%,rgba(0,0,0,0) 51%),
-              linear-gradient(235deg, rgba(0,0,0,0) 49%, rgba(255,0,0,1) 50%, rgba(0,0,0,0) 51%);
+              linear-gradient(235deg, rgba(0,0,0,0) 49%, rgba(255,0,0,1) 50%, rgba(0,0,0,0) 51%),
+              #bdc3c7;
   left:139px;
-  box-shadow: inset 0 0 0 7px #FFF;
+  box-shadow: inset 0 0 0 7px #bdc3c7;
 }
 .discard {
+  background: #bdc3c7;
   left: 315px;
 }
 

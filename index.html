@@ -371,6 +371,7 @@
       });
       cdCt = 0;
       setTimeout(function(){grid.children[0].firstElementChild.dispatchEvent(click);},2750);
+      setTimeout(function(){grid.children[1].firstElementChild.dispatchEvent(click);},3000);
     }
 
     function clearDeck(){
@@ -384,20 +385,26 @@
       });
       Array.prototype.forEach.call(grid.children, function(contain,i) {
         contain.firstElementChild.style.opacity = 0;
-          contain.style.top = -300+'px';
-          contain.style.left = 0;
+        contain.style.top = -300+'px';
+        contain.style.left = 0;
+        contain.firstElementChild.style.transform = '';
       });
     }
 
     function flip() {
       var contain = grid.children[cdCt],
           card = contain.firstElementChild,
-          left = contain.style.left.replace('px',''),
+          left = 300,
           zrotate = Math.floor(Math.random() *360);//* 10 + 90);
-      console.log('flip');
-      card.style.transform = 'rotateY(180deg)';//' rotateZ(' + zrotate + 'deg)';
-      card.className += ' deck';
-      contain.style.left = 300+'px';
+      if(!cdCt) {
+        left = 150;
+        contain.style.top = 230+'px';
+        card.style.transform = 'rotateY(180deg) rotateZ(' + 360 + 'deg)';
+      } else {
+        card.style.transform = 'rotateY(180deg)';
+        card.className += ' deck';
+      }
+      contain.style.left = left+'px';
       contain.style.zIndex = 0;
       card.removeEventListener('click',flip);
       cdCt++;
