@@ -16,7 +16,7 @@
   <div class="p1">
     <div class="menu">
         <div class="buttonBox">
-          <input type="button" onclick="who.dispatchEvent(change)" value="Shuffle">
+          <input type="button" onclick="whos[0].dispatchEvent(change)" value="Shuffle">
         </div>
         <div class="buttonBox">
           <input type="button" onclick="clearDeck(0)" value="Clear">
@@ -256,7 +256,7 @@
   <div class="p2">
     <div class="menu">
         <div class="buttonBox">
-          <input type="button" onclick="who.dispatchEvent(change)" value="Shuffle">
+          <input type="button" onclick="whos[1].dispatchEvent(change)" value="Shuffle">
         </div>
         <div class="buttonBox">
           <input type="button" onclick="clearDeck(1)" value="Clear">
@@ -614,7 +614,7 @@
           card.addEventListener('click',flip);
         },50*(36-i));
       });
-      cdCt = 0;
+      cdCts[x] = 0;
       setTimeout(function(){grids[x].children[0].firstElementChild.dispatchEvent(click);},2750);
       setTimeout(function(){grids[x].children[1].firstElementChild.dispatchEvent(click);},3000);
     }
@@ -633,10 +633,10 @@
         contain.style.top = -300+'px';
         contain.style.left = (x===0)?0:550;
         contain.firstElementChild.style.transform = '';
+        contain.firstElementChild.removeEventListener('click',test);
       });
     }
 
-    // var tmpCt = 0;
     function flip(e) {
       var x = parseInt(e.target.parentElement.parentElement.parentElement.className.substr(1,1))-1,
           contain = grids[x].children[cdCts[x]],
@@ -644,16 +644,10 @@
           left = (x===0) ? 320 : 555,
           zrotate = Math.floor(Math.random() *360);//* 10 + 90);
       if(!cdCts[x]) {
-      // if(card.firstElementChild.className === 'front base') {
-        // console.log(tmpCt);
-        left = (x===0)?170:340;//*tmpCt;
+        left = (x===0)?170:340;
         contain.style.top = 250+'px';
         card.style.transform = 'rotateY(180deg) rotateZ(' + 360 + 'deg)';
         card.addEventListener('click',test);
-        // card.firstElementChild.className = 'front';
-        // card.firstElementChild.style.border = '1px solid black'
-        // card.firstElementChild.style.background = 'linear-gradient(to bottom, rgba(0,0,0,0) 49%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 51%';
-        // tmpCt++;
       } else {
         card.style.transform = 'rotateY(180deg)';
         card.className += ' deck';
