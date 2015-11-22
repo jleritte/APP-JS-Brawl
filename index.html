@@ -19,7 +19,7 @@
           <input type="button" onclick="whos[0].dispatchEvent(change)" value="Shuffle">
         </div>
         <div class="buttonBox">
-          <input type="button" onclick="clearDeck(0)" value="Clear">
+          <input type="button" onclick="clearDeck(0);noShuffle(event)" value="Clear">
         </div>
         <select class="who blank">
           <option value="Bennett0">Bennett0</option>
@@ -259,7 +259,7 @@
           <input type="button" onclick="whos[1].dispatchEvent(change)" value="Shuffle">
         </div>
         <div class="buttonBox">
-          <input type="button" onclick="clearDeck(1)" value="Clear">
+          <input type="button" onclick="clearDeck(1);noShuffle(event)" value="Clear">
         </div>
         <select class="who blank">
           <option value="Bennett1">Bennett1</option>
@@ -515,7 +515,6 @@
       who.addEventListener('change',loadDeck);
       who.dispatchEvent(change);
     });
-
     function selectDeck(e) {
       if(e.target.className.substr(0,6) === 'select'){
         return;
@@ -523,6 +522,7 @@
       var who = e.target.className.replace('icon ',''),
           select = e.target.parentElement,
           x = parseInt(select.parentElement.parentElement.className.substr(1,1))-1;
+      select.parentElement.firstElementChild.firstElementChild.removeAttribute('disabled');
       Array.prototype.forEach.call(window.whos[x].children, function(option,i) {
         if(option.selected === true){
           option.selected = false;
@@ -533,11 +533,10 @@
       });
       window.whos[x].dispatchEvent(change);
     }
-
     function loadDeck(e){
       var who = e.target.value;
           select = e.target.nextElementSibling,
-          player = who.substr(-1,1);
+          player = parseInt(who.substr(-1,1));
       who = who.replace(/\d/,'');
       clearDeck(player);
       select.className = 'select icon '+who;
@@ -561,7 +560,6 @@
         default:         alert('Not a Person!');clearDeck();
       }
     }
-
     function buildLabels(deck,x) {
       var i,j, ct=0, bd=[];
       for(i = 0; i < 13; i++){
@@ -573,7 +571,6 @@
       }
       return bd;
     }
-
     function _shuffle(deck) {
       for(var i = 31; i > 0; i--) {
         var rand = Math.floor(Math.random() * (i + 1));
@@ -585,7 +582,6 @@
       }
       return deck;
     }
-
     function show(name,deck,x) {
       var deck = buildLabels(deck,x),i,
           discard = document.getElementsByClassName('discard')[0];
@@ -607,6 +603,7 @@
           contain.style.zIndex = 170-i*5;
           contain.style.left = (lt*5+125+(x*587))+'px';
           contain.style.top = 5+'px';
+          card.style.boxShadow = '0 0 0 black';
           card.style.opacity = 1;
           card.style.transform = '';
           card.className = 'card '+name;
@@ -618,7 +615,6 @@
       setTimeout(function(){grids[x].children[0].firstElementChild.dispatchEvent(click);},2750);
       setTimeout(function(){grids[x].children[1].firstElementChild.dispatchEvent(click);},3000);
     }
-
     function clearDeck(x){
       var select = document.getElementsByClassName('select')[x];
       select.className = 'select icon Empty';
@@ -631,12 +627,12 @@
       Array.prototype.forEach.call(grids[x].children, function(contain,i) {
         contain.firstElementChild.style.opacity = 0;
         contain.style.top = -300+'px';
-        contain.style.left = (x===0)?0:550;
+        contain.style.left = (x===0)?0:550+'px';
         contain.firstElementChild.style.transform = '';
+        contain.firstElementChild.style.boxShadow = '15px 15px 20px black';
         contain.firstElementChild.removeEventListener('click',test);
       });
     }
-
     function flip(e) {
       var x = findPlayer(e.target)-1,
           contain = grids[x].children[cdCts[x]],
@@ -656,6 +652,7 @@
       setTimeout(function(){
         contain.style.zIndex = 0;
       },100);
+      card.style.boxShadow = '';
       card.removeEventListener('click',flip);
       cdCts[x]++;
     }
@@ -672,6 +669,10 @@
       }
       elem = parseInt(elem.className.substr(1,1));
       return elem;
+    }
+    function noShuffle(e) {
+      var button = e.target.parentElement.previousElementSibling.firstElementChild;
+      button.setAttribute('disabled','disabled');
     }
   </script>
 </body>
