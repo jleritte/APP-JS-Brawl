@@ -638,7 +638,7 @@
     }
 
     function flip(e) {
-      var x = parseInt(e.target.parentElement.parentElement.parentElement.className.substr(1,1))-1,
+      var x = findPlayer(e.target)-1,
           contain = grids[x].children[cdCts[x]],
           card = contain.firstElementChild,
           left = (x===0) ? 320 : 555,
@@ -653,7 +653,9 @@
         card.className += ' deck';
       }
       contain.style.left = left+'px';
-      contain.style.zIndex = 0;
+      setTimeout(function(){
+        contain.style.zIndex = 0;
+      },100);
       card.removeEventListener('click',flip);
       cdCts[x]++;
     }
@@ -663,6 +665,13 @@
       } else {
         alert('Player 2');
       }
+    }
+    function findPlayer(elem) {
+      while(elem.className.substr(0,1)!=='p'){
+        elem = elem.parentElement;
+      }
+      elem = parseInt(elem.className.substr(1,1));
+      return elem;
     }
   </script>
 </body>
