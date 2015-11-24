@@ -638,11 +638,12 @@
           contain = grids[x].children[cdCts[x]],
           card = contain.firstElementChild,
           left = (x===0) ? 320 : 555,
+          flipdir = (x===0) ? 180:-180;
           zrotate = Math.floor(Math.random() *360);//* 10 + 90);
       if(!cdCts[x]) {
         left = (x===0)?170:340;
         contain.style.top = 250+'px';
-        card.style.transform = 'rotateY(180deg) rotateZ(' + 360 + 'deg)';
+        card.style.transform = 'rotateY(' + flipdir + 'deg) rotateZ(' + 360 + 'deg)';
         card.addEventListener('click',test);
       } else {
         card.style.transform = 'rotateY(180deg)';
@@ -651,8 +652,10 @@
       contain.style.left = left+'px';
       setTimeout(function(){
         contain.style.zIndex = 0;
-      },100);
-      card.style.boxShadow = '';
+      },200);
+      setTimeout(function(){
+        card.style.boxShadow = '';
+      },600);
       card.removeEventListener('click',flip);
       cdCts[x]++;
     }
