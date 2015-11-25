@@ -4,10 +4,10 @@
 BODY {
   background: #d35400;
 }
-.blank {
-  display: none;
+[blank] {
+  display: none !important;
 }
-.hide {
+[hide] {
   visibility: hidden;
 }
 INPUT[type=button] {
@@ -25,7 +25,7 @@ INPUT[type=button]:active {
   border: 1px solid black;
   border-bottom-width: 0;
 }
-.menu {
+[menu] {
   position: absolute;
   display: flex;
   flex-flow: column;
@@ -33,10 +33,10 @@ INPUT[type=button]:active {
   margin-right: 5px;
   top:5px;
 }
-.p1 .menu {
+.p1 [menu] {
   left: 5px;
 }
-.p2 .menu {
+.p2 [menu] {
   left: 922px;
 }
 
@@ -84,7 +84,7 @@ INPUT[type=button]:active {
 }
 
 
-.grid{
+[grid] {
   display: flex;
   flex-flow: row wrap;
   width: 1000px;
@@ -106,7 +106,7 @@ INPUT[type=button]:active {
   left: 550px;
 }
 
-.card {
+[card] {
   position: relative;
   padding: 0;
   margin: 0;
@@ -118,7 +118,7 @@ INPUT[type=button]:active {
   border-radius: 5px;
 }
 
-.deck:hover, .deck:hover .back, .deck:hover .front {
+.deck:hover, .deck:hover [back], .deck:hover [front] {
   width: 162px;
   height: 221px;
   background-size: 162px 221px;
@@ -127,7 +127,7 @@ INPUT[type=button]:active {
   box-shadow: 5px 5px 10px black;
 }
 
-.front, .back {
+[front], [back] {
   position: absolute;
   width: 150px;
   height: 209px;
@@ -138,11 +138,11 @@ INPUT[type=button]:active {
   transition: all 0.6s ease;
 }
 
-.front {
+[front] {
   transform: rotateY(180deg);
 }
 
-.back {
+[back] {
   border: 1px solid #000;
 }
 
@@ -205,260 +205,260 @@ INPUT[type=button]:active {
   background-image: url("../img/serveimage.png");
 }
 
-.Bennett > .back {
+.Bennett > [back] {
   background-image: url("../img/Bennett/back.jpg");
 }
-.Bennett > .front.base {
+.Bennett > [front].base {
   background-image: url("../img/Bennett/base.jpg");
 }
-.Bennett > .front.hitB {
+.Bennett > [front].hitB {
   background-image: url("../img/Bennett/hitB.jpg");
 }
-.Bennett > .front.hit2B {
+.Bennett > [front].hit2B {
   background-image: url("../img/Bennett/hit2B.jpg");
 }
-.Bennett > .front.blockB {
+.Bennett > [front].blockB {
   background-image: url("../img/Bennett/blockB.jpg");
 }
-.Bennett > .front.hitG {
+.Bennett > [front].hitG {
   background-image: url("../img/Bennett/hitG.jpg");
 }
-.Bennett > .front.hit2G {
+.Bennett > [front].hit2G {
   background-image: url("../img/Bennett/hit2G.jpg");
 }
-.Bennett > .front.blockG {
+.Bennett > [front].blockG {
   background-image: url("../img/Bennett/blockG.jpg");
 }
-.Bennett > .front.hitR {
+.Bennett > [front].hitR {
   background-image: url("../img/Bennett/hitR.jpg");
 }
-.Bennett > .front.hit2R {
+.Bennett > [front].hit2R {
   background-image: url("../img/Bennett/hit2R.jpg");
 }
-.Bennett > .front.blockR {
+.Bennett > [front].blockR {
   background-image: url("../img/Bennett/blockR.jpg");
 }
-.Bennett > .front.clear {
+.Bennett > [front].clear {
   background-image: url("../img/Bennett/clear.jpg");
 }
-.Bennett > .front.press {
+.Bennett > [front].press {
   background-image: url("../img/Bennett/press.jpg");
 }
-.Bennett > .front.freeze {
+.Bennett > [front].freeze {
   background-image: url("../img/Bennett/freeze.jpg");
 }
 
-.Chris > .back {
+.Chris > [back] {
   background-image: url("../img/Chris/back.jpg");
 }
-.Chris > .front.base {
+.Chris > [front].base {
   background-image: url("../img/Chris/base.jpg");
 }
-.Chris > .front.hitB {
+.Chris > [front].hitB {
   background-image: url("../img/Chris/hitB.jpg");
 }
-.Chris > .front.hit2B {
+.Chris > [front].hit2B {
   background-image: url("../img/Chris/hit2B.jpg");
 }
-.Chris > .front.blockB {
+.Chris > [front].blockB {
   background-image: url("../img/Chris/blockB.jpg");
 }
-.Chris > .front.hitG {
+.Chris > [front].hitG {
   background-image: url("../img/Chris/hitG.jpg");
 }
-.Chris > .front.hit2G {
+.Chris > [front].hit2G {
   background-image: url("../img/Chris/hit2G.jpg");
 }
-.Chris > .front.blockG {
+.Chris > [front].blockG {
   background-image: url("../img/Chris/blockG.jpg");
 }
-.Chris > .front.hitR {
+.Chris > [front].hitR {
   background-image: url("../img/Chris/hitR.jpg");
 }
-.Chris > .front.hit2R {
+.Chris > [front].hit2R {
   background-image: url("../img/Chris/hit2R.jpg");
 }
-.Chris > .front.blockR {
+.Chris > [front].blockR {
   background-image: url("../img/Chris/blockR.jpg");
 }
-.Chris > .front.clear {
+.Chris > [front].clear {
   background-image: url("../img/Chris/clear.jpg");
 }
-.Chris > .front.press {
+.Chris > [front].press {
   background-image: url("../img/Chris/press.jpg");
 }
-.Chris > .front.freeze {
+.Chris > [front].freeze {
   background-image: url("../img/Chris/freeze.jpg");
 }
 
-.Darwin > .back {
+.Darwin > [back] {
   background-image: url("../img/Darwin/back.jpg");
 }
-.Darwin > .front.base {
+.Darwin > [front].base {
   background-image: url("../img/Darwin/base.jpg");
 }
-.Darwin > .front.hitB {
+.Darwin > [front].hitB {
   background-image: url("../img/Darwin/hitB.jpg");
 }
-.Darwin > .front.hit2B {
+.Darwin > [front].hit2B {
   background-image: url("../img/Darwin/hit2B.jpg");
 }
-.Darwin > .front.blockB {
+.Darwin > [front].blockB {
   background-image: url("../img/Darwin/blockB.jpg");
 }
-.Darwin > .front.hitG {
+.Darwin > [front].hitG {
   background-image: url("../img/Darwin/hitG.jpg");
 }
-.Darwin > .front.hit2G {
+.Darwin > [front].hit2G {
   background-image: url("../img/Darwin/hit2G.jpg");
 }
-.Darwin > .front.blockG {
+.Darwin > [front].blockG {
   background-image: url("../img/Darwin/blockG.jpg");
 }
-.Darwin > .front.hitR {
+.Darwin > [front].hitR {
   background-image: url("../img/Darwin/hitR.jpg");
 }
-.Darwin > .front.hit2R {
+.Darwin > [front].hit2R {
   background-image: url("../img/Darwin/hit2R.jpg");
 }
-.Darwin > .front.blockR {
+.Darwin > [front].blockR {
   background-image: url("../img/Darwin/blockR.jpg");
 }
-.Darwin > .front.clear {
+.Darwin > [front].clear {
   background-image: url("../img/Darwin/clear.jpg");
 }
-.Darwin > .front.press {
+.Darwin > [front].press {
   background-image: url("../img/Darwin/press.jpg");
 }
-.Darwin > .front.freeze {
+.Darwin > [front].freeze {
   background-image: url("../img/Darwin/freeze.jpg");
 }
 
-.Hale > .back {
+.Hale > [back] {
   background-image: url("../img/Hale/back.jpg");
 }
-.Hale > .front.base {
+.Hale > [front].base {
   background-image: url("../img/Hale/base.jpg");
 }
-.Hale > .front.hitB {
+.Hale > [front].hitB {
   background-image: url("../img/Hale/hitB.jpg");
 }
-.Hale > .front.hit2B {
+.Hale > [front].hit2B {
   background-image: url("../img/Hale/hit2B.jpg");
 }
-.Hale > .front.blockB {
+.Hale > [front].blockB {
   background-image: url("../img/Hale/blockB.jpg");
 }
-.Hale > .front.hitG {
+.Hale > [front].hitG {
   background-image: url("../img/Hale/hitG.jpg");
 }
-.Hale > .front.hit2G {
+.Hale > [front].hit2G {
   background-image: url("../img/Hale/hit2G.jpg");
 }
-.Hale > .front.blockG {
+.Hale > [front].blockG {
   background-image: url("../img/Hale/blockG.jpg");
 }
-.Hale > .front.hitR {
+.Hale > [front].hitR {
   background-image: url("../img/Hale/hitR.jpg");
 }
-.Hale > .front.hit2R {
+.Hale > [front].hit2R {
   background-image: url("../img/Hale/hit2R.jpg");
 }
-.Hale > .front.blockR {
+.Hale > [front].blockR {
   background-image: url("../img/Hale/blockR.jpg");
 }
-.Hale > .front.clear {
+.Hale > [front].clear {
   background-image: url("../img/Hale/clear.jpg");
 }
-.Hale > .front.press {
+.Hale > [front].press {
   background-image: url("../img/Hale/press.jpg");
 }
-.Hale > .front.freeze {
+.Hale > [front].freeze {
   background-image: url("../img/Hale/freeze.jpg");
 }
 
-.Morgan > .back {
+.Morgan > [back] {
   background-image: url("../img/Morgan/back.jpg");
 }
-.Morgan > .front.base {
+.Morgan > [front].base {
   background-image: url("../img/Morgan/base.jpg");
 }
-.Morgan > .front.hitB {
+.Morgan > [front].hitB {
   background-image: url("../img/Morgan/hitB.jpg");
 }
-.Morgan > .front.hit2B {
+.Morgan > [front].hit2B {
   background-image: url("../img/Morgan/hit2B.jpg");
 }
-.Morgan > .front.blockB {
+.Morgan > [front].blockB {
   background-image: url("../img/Morgan/blockB.jpg");
 }
-.Morgan > .front.hitG {
+.Morgan > [front].hitG {
   background-image: url("../img/Morgan/hitG.jpg");
 }
-.Morgan > .front.hit2G {
+.Morgan > [front].hit2G {
   background-image: url("../img/Morgan/hit2G.jpg");
 }
-.Morgan > .front.blockG {
+.Morgan > [front].blockG {
   background-image: url("../img/Morgan/blockG.jpg");
 }
-.Morgan > .front.hitR {
+.Morgan > [front].hitR {
   background-image: url("../img/Morgan/hitR.jpg");
 }
-.Morgan > .front.hit2R {
+.Morgan > [front].hit2R {
   background-image: url("../img/Morgan/hit2R.jpg");
 }
-.Morgan > .front.blockR {
+.Morgan > [front].blockR {
   background-image: url("../img/Morgan/blockR.jpg");
 }
-.Morgan > .front.clear {
+.Morgan > [front].clear {
   background-image: url("../img/Morgan/clear.jpg");
 }
-.Morgan > .front.press {
+.Morgan > [front].press {
   background-image: url("../img/Morgan/press.jpg");
 }
-.Morgan > .front.freeze {
+.Morgan > [front].freeze {
   background-image: url("../img/Morgan/freeze.jpg");
 }
 
-.Pearl > .back {
+.Pearl > [back] {
   background-image: url("../img/Pearl/back.jpg");
 }
-.Pearl > .front.base {
+.Pearl > [front].base {
   background-image: url("../img/Pearl/base.jpg");
 }
-.Pearl > .front.hitB {
+.Pearl > [front].hitB {
   background-image: url("../img/Pearl/hitB.jpg");
 }
-.Pearl > .front.hit2B {
+.Pearl > [front].hit2B {
   background-image: url("../img/Pearl/hit2B.jpg");
 }
-.Pearl > .front.blockB {
+.Pearl > [front].blockB {
   background-image: url("../img/Pearl/blockB.jpg");
 }
-.Pearl > .front.hitG {
+.Pearl > [front].hitG {
   background-image: url("../img/Pearl/hitG.jpg");
 }
-.Pearl > .front.hit2G {
+.Pearl > [front].hit2G {
   background-image: url("../img/Pearl/hit2G.jpg");
 }
-.Pearl > .front.blockG {
+.Pearl > [front].blockG {
   background-image: url("../img/Pearl/blockG.jpg");
 }
-.Pearl > .front.hitR {
+.Pearl > [front].hitR {
   background-image: url("../img/Pearl/hitR.jpg");
 }
-.Pearl > .front.hit2R {
+.Pearl > [front].hit2R {
   background-image: url("../img/Pearl/hit2R.jpg");
 }
-.Pearl > .front.blockR {
+.Pearl > [front].blockR {
   background-image: url("../img/Pearl/blockR.jpg");
 }
-.Pearl > .front.clear {
+.Pearl > [front].clear {
   background-image: url("../img/Pearl/clear.jpg");
 }
-.Pearl > .front.press {
+.Pearl > [front].press {
   background-image: url("../img/Pearl/press.jpg");
 }
-.Pearl > .front.freeze {
+.Pearl > [front].freeze {
   background-image: url("../img/Pearl/freeze.jpg");
 }
