@@ -23,7 +23,7 @@ function BrawlDeck(character,x) {
         }
     }
     _private.cardUsed = 0;
-  };
+  }
 
   switch(character) {
     case 'Bennett':  buildDeck(BENNETT,x);console.log('Bennett');break;

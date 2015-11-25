@@ -4,11 +4,18 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
-
+      options: {
+        curly: true,
+        eqeqeq: true,
+        eqnull: true,
+        browser: true
+      },
+      files: {
+        src: ['js/*.js']
+      }
     },
     browserify: {
-      src: ['js/Brawl.js'],
-      dest: 'js/app.js'
+      'js/app.js': ['js/Brawl.js']
     },
     uglify: {
       build: {

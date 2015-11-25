@@ -27,10 +27,11 @@ function _setCard(card) {
   this.cardLocation++;
 }
 function _getCard() {
-  if(cardLocation >= 0)
+  if(cardLocation >= 0) {
     return this.discard[cardLocation - 1];
-  else
+  } else {
     return new BrawlCard(-1,0);
+  }
 }
 function _playCard() {
   this.cardLocation--;

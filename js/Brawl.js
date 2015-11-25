@@ -10,7 +10,7 @@ function Brawl(){
     currentCard: [],
     icons: [],
     count: 0
-  }
+  };
   function init() {
 
   }

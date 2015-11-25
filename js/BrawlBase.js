@@ -51,8 +51,8 @@ function BrawlBase(x, a) {
 
 function _addSide(card, side) {
   var rtrn = false;
-  if(card.getType() == 12) {freeze = true; rtrn = true;}
-  if(this.counts[side] == 0) {
+  if(card.getType() === 12) {freeze = true; rtrn = true;}
+  if(this.counts[side] === 0) {
     switch(card.getType()) {
       case 1:
       case 4:
@@ -64,45 +64,45 @@ function _addSide(card, side) {
       case 1:
       case 2:
       case 3: {
-        if(this.sides[side][this.counts[side] - 1].getType() == 1 || this.sides[side][this.counts[side] - 1].getType() == 2) {
+        if(this.sides[side][this.counts[side] - 1].getType() === 1 || this.sides[side][this.counts[side] - 1].getType() === 2) {
           rtrn = this.placeCard(card, side);
         }
-        else if(this.sides[side][this.counts[side] - 1].getType() == 11) {
-          if(card.getType() == 1) {
-            if(this.sides[side][this.counts[side] - 2].getType() == 3) {
+        else if(this.sides[side][this.counts[side] - 1].getType() === 11) {
+          if(card.getType() === 1) {
+            if(this.sides[side][this.counts[side] - 2].getType() === 3) {
               rtrn = this.placeCard(card, side);
             }
           }
         }
-      }
+      } break;
       case 4:
       case 5:
       case 6: {
-        if(this.sides[side][this.counts[side] - 1].getType() == 4 || this.sides[side][this.counts[side] - 1].getType() == 5) {
+        if(this.sides[side][this.counts[side] - 1].getType() === 4 || this.sides[side][this.counts[side] - 1].getType() === 5) {
           rtrn = this.placeCard(card, side);
         }
-        else if(this.sides[side][this.counts[side] - 1].getType() == 11) {
-          if(card.getType() == 4) {
-            if(this.sides[side][this.counts[side] - 2].getType() == 6) {
+        else if(this.sides[side][this.counts[side] - 1].getType() === 11) {
+          if(card.getType() === 4) {
+            if(this.sides[side][this.counts[side] - 2].getType() === 6) {
               rtrn = this.placeCard(card, side);
             }
           }
         }
-      }
+      } break;
       case 7:
       case 8:
       case 9: {
-        if(this.sides[side][this.counts[side] - 1].getType() == 7 || this.sides[side][this.counts[side] - 1].getType() == 8) {
+        if(this.sides[side][this.counts[side] - 1].getType() === 7 || this.sides[side][this.counts[side] - 1].getType() === 8) {
           rtrn = this.placeCard(card, side);
         }
-        else if(this.sides[side][this.counts[side] - 1].getType() == 11) {
-          if(card.getType() == 7) {
-            if(this.sides[side][this.counts[side] - 2].getType() == 9) {
+        else if(this.sides[side][this.counts[side] - 1].getType() === 11) {
+          if(card.getType() === 7) {
+            if(this.sides[side][this.counts[side] - 2].getType() === 9) {
               rtrn = this.placeCard(card, side);
             }
           }
         }
-      }
+      } break;
       case 11: {
         switch(this.sides[side][this.counts[side] - 1].getType()) {
           case 3:
@@ -115,22 +115,23 @@ function _addSide(card, side) {
   return rtrn;
 }
 function _getSide(side) {
-  if(this.counts[side] <= 0)
+  if(this.counts[side] <= 0) {
     return this.sides[side][0];
-  else
+  } else {
     return this.sides[side][this.counts[side] - 1];
+  }
 }
 function _scoreSide(side) {
-  this.counts[side] = 0, j;
+  this.counts[side] = 0, j; //jshint ignore:line
   for(j = 0; j < this.sides[side].length; j++) {
-    if(this.sides[side][j] != null) {
+    if(this.sides[side][j] !== null) {
       switch(this.sides[side][j].getType()) {
         case 1:
         case 4:
-        case 7: this.counts[side] += 1;break;
+        case 7: this.counts[side] += 1; break;
         case 2:
         case 5:
-        case 8: this.counts[side] += 2;break;
+        case 8: this.counts[side] += 2; break;
       }
     }
   }
@@ -151,10 +152,11 @@ function _setLocation(a) {
 }
 function _getFreezeString() {
   var freezeStr = ' ';
-  if(this.freeze == true)
+  if(this.freeze === true) {
     freezeStr = 'True';
-  else
+  } else {
     freezeStr = 'False';
+  }
   return freezeStr;
 }
 
