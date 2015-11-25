@@ -15,12 +15,12 @@ module.exports = function(grunt) {
       }
     },
     browserify: {
-      'js/app.js': ['js/Brawl.js']
+      'resources/app.js': ['js/Brawl.js']
     },
     uglify: {
       build: {
-        src: 'js/app.js',
-        dest: 'js/app.min.js'
+        src: 'resources/app.js',
+        dest: 'resources/app.min.js'
       }
     },
     watch: {
