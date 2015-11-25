@@ -3,6 +3,9 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    jshint: {
+
+    },
     browserify: {
       src: ['js/Brawl.js'],
       dest: 'js/app.js'
@@ -15,7 +18,8 @@ module.exports = function(grunt) {
     },
     watch: {
       js: {
-        
+        files: ['js/*.js'],
+        tasks: ['jshint','browserify']
       }
     }
   });
@@ -26,6 +30,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-browserify');
 
 
-  grunt.registerTask('default', ['browserify','uglify']);
+  grunt.registerTask('default', ['jshint','browserify','uglify']);
 
 };
