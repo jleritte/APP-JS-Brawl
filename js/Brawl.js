@@ -1,5 +1,5 @@
-var BrawlDeck = require('./BrawlDeck.js');
-    BrawlDiscard = require('./BrawlDiscard.js');
+var BrawlDeck = require('./BrawlDeck.js'),
+    BrawlDiscard = require('./BrawlDiscard.js'),
     BrawlField = require('./BrawlField.js');
 
 function Brawl(){
@@ -11,12 +11,19 @@ function Brawl(){
     icons: [],
     count: 0
   };
-  function init() {
-
-  }
+    Object.defineProperties(this,{
+      'init': {
+        value: _init.bind(_private),
+        enumerable: true
+      }
+    });
 }
 
-module.exports = Brawl;
+window.Brawl = Brawl;
+
+  function _init() {
+    console.log(this);
+  }
 
 // public class Brawl /*extends GameSearch*/ {
 //   public static void main(String[] args) {
