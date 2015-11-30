@@ -1,6 +1,7 @@
 var BrawlDeck = require('./BrawlDeck.js'),
     BrawlDiscard = require('./BrawlDiscard.js'),
-    BrawlField = require('./BrawlField.js');
+    BrawlField = require('./BrawlField.js'),
+    BrawlGUI = require('./BrawlGUI.js');
 
 function Brawl(){
   var _private = {
@@ -23,6 +24,7 @@ window.Brawl = Brawl;
 
   function _init() {
     console.log(this);
+    test = new BrawlGUI();
   }
 
 // public class Brawl /*extends GameSearch*/ {
