@@ -20,6 +20,10 @@ INPUT[type=button]:active {
   color: #f1c40f;
   background: #f39c12;
 }
+INPUT[type=button]:disabled {
+  color: #333;
+  background: #555;
+}
 .buttonBox {
   width: 100px;
   border: 1px solid black;
@@ -178,8 +182,33 @@ INPUT[type=button]:active {
 
 
 
-
-
+.vs {
+  height:100px;
+  width: 100px;
+  color: #FFF;
+  font-weight: 200;
+  font-size: 24pt;
+  text-shadow: 1px 0 #000,0 1px #000,-1px 0 #000,0 -1px #000;
+  background: #f1c40f;
+  position: relative;
+  text-align: center;
+}
+.vs:before, .vs:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100px;
+  width: 100px;
+  background: #f1c40f;
+  z-index: -1;
+}
+.vs:before {
+  transform: rotate(30deg);
+}
+.vs:after {
+  transform: rotate(60deg);
+}
 
 
 /*Character styles*/
@@ -202,7 +231,7 @@ INPUT[type=button]:active {
   background-image: url("../img/Pearl/IconPearl350.jpg");
 }
 .icon.Empty {
-  background-image: url("../img/serveimage.png");
+  background-image: url("../img/blank.png");
 }
 
 .Bennett > [back] {

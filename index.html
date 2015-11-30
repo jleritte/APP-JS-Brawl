@@ -7,19 +7,19 @@
   <link rel="icon" href="./img/favicon.ico">
 </head>
 <body>
-  <span class="Bennett" hide><span back></span></span>
-  <span class="Chris" hide><span back></span></span>
-  <span class="Darwin" hide><span back></span></span>
-  <span class="Hale" hide><span back></span></span>
-  <span class="Morgan" hide><span back></span></span>
-  <span class="Pearl" hide><span back></span></span>
-  <div class="p1">
+  <template hide>
+    <span class="Bennett" ><span back></span></span>
+    <span class="Chris" ><span back></span></span>
+    <span class="Darwin" ><span back></span></span>
+    <span class="Hale" ><span back></span></span>
+    <span class="Morgan" ><span back></span></span>
+    <span class="Pearl" ><span back></span></span>
+  </template>
+  <!--div class="p1">
     <div menu>
         <div class="buttonBox">
-          <input type="button" onclick="whos[0].dispatchEvent(change)" value="Shuffle">
-        </div>
-        <div class="buttonBox">
-          <input type="button" onclick="clearDeck(0);noShuffle(event)" value="Clear">
+          <input type="button" value="Shuffle">
+          <input type="button" value="Clear">
         </div>
         <select class="who" blank>
           <option value="Bennett0">Bennett0</option>
@@ -29,7 +29,7 @@
           <option value="Morgan0">Morgan0</option>
           <option value="Pearl0">Pearl0</option>
         </select>
-        <div class="select icon Empty" onclick="selectDeck(event)">
+        <div class="select icon Empty">
           <div class="icon Bennett" value="Bennett"></div>
           <div class="icon Chris" value="Chris"></div>
           <div class="icon Darwin" value="Darwin"></div>
@@ -256,10 +256,8 @@
   <div class="p2">
     <div menu>
         <div class="buttonBox">
-          <input type="button" onclick="whos[1].dispatchEvent(change)" value="Shuffle">
-        </div>
-        <div class="buttonBox">
-          <input type="button" onclick="clearDeck(1);noShuffle(event)" value="Clear">
+          <input type="button" value="Shuffle">
+          <input type="button" value="Clear">
         </div>
         <select class="who" blank>
           <option value="Bennett1">Bennett1</option>
@@ -269,7 +267,7 @@
           <option value="Morgan1">Morgan1</option>
           <option value="Pearl1">Pearl1</option>
         </select>
-        <div class="select icon Empty" onclick="selectDeck(event)">
+        <div class="select icon Empty">
           <div class="icon Bennett" value="Bennett"></div>
           <div class="icon Chris" value="Chris"></div>
           <div class="icon Darwin" value="Darwin"></div>
@@ -492,191 +490,12 @@
     </div>
     <div class="deckLanding"></div>
     <div class="discard"></div>
-  </div>
+  </div-->
+  <div class="vs">VS</div>
   <script src="resources/app.js"></script>
   <script>
     Brawl = new Brawl();
     Brawl.init();
-    var BENNETT = [7,8,0,1,3,0,1,4,0,1,6,1,3],
-        CHRIS =   [4,7,0,2,5,0,2,8,0,2,2,0,3],
-        DARWIN =  [3,4,1,3,4,0,1,8,1,3,1,3,3],
-        HALE =    [6,5,1,0,8,1,1,4,1,1,4,0,3],
-        MORGAN =  [5,8,0,4,6,0,2,2,0,1,4,0,3],
-        PEARL =   [5,7,1,1,7,1,1,1,0,1,5,2,3];
-    var CARDNAME = ['base', 'hitB', 'hit2B', 'blockB',
-                    'hitG', 'hit2G', 'blockG', 'hitR',
-                    'hit2R', 'blockR', 'clear', 'press', 'freeze'];
-    var DECKSIZE = 35;
-    var grids = document.querySelectorAll('[grid]'),
-        whos = document.getElementsByClassName('who'),
-        change = new Event('change'),
-        click = new Event('click'),
-        cdCts = [0,0];
-
-    Array.prototype.forEach.call(whos,function(who){
-      who.addEventListener('change',loadDeck);
-      who.dispatchEvent(change);
-    });
-    function selectDeck(e) {
-      if(e.target.className.substr(0,6) === 'select'){
-        return;
-      }
-      var who = e.target.className.replace('icon ',''),
-          select = e.target.parentElement,
-          x = parseInt(select.parentElement.parentElement.className.substr(1,1))-1;
-      select.parentElement.firstElementChild.firstElementChild.removeAttribute('disabled');
-      Array.prototype.forEach.call(window.whos[x].children, function(option,i) {
-        if(option.selected === true){
-          option.selected = false;
-        }
-        if (option.value == who+x) {
-          option.selected = true;
-        }
-      });
-      window.whos[x].dispatchEvent(change);
-    }
-    function loadDeck(e){
-      var who = e.target.value;
-          select = e.target.nextElementSibling,
-          player = parseInt(who.substr(-1,1));
-      who = who.replace(/\d/,'');
-      clearDeck(player);
-      select.className = 'select icon '+who;
-      select.setAttribute('value',who);
-      Array.prototype.forEach.call(select.children,function(elem) {
-        if(elem.hasAttribute('blank')){
-          elem.removeAttribute('blank');
-        }
-        if(elem.className === 'icon '+who) {
-          elem.setAttribute('blank','');
-        }
-      });
-      console.log(who);
-      switch(who) {
-        case 'Bennett':  show(who,BENNETT,player);break;
-        case 'Chris':    show(who,CHRIS,player);break;
-        case 'Darwin':   show(who,DARWIN,player);break;
-        case 'Hale':     show(who,HALE,player);break;
-        case 'Morgan':   show(who,MORGAN,player);break;
-        case 'Pearl':    show(who,PEARL,player);break;
-        default:         alert('Not a Person!');clearDeck();
-      }
-    }
-    function buildLabels(deck,x) {
-      var i,j, ct=0, bd=[];
-      for(i = 0; i < 13; i++){
-        for(j = 0; j < deck[i]; j++){
-          var front = grids[x].children[ct].firstElementChild.firstElementChild;
-          bd[ct] = CARDNAME[i];
-          ct++;
-        }
-      }
-      return bd;
-    }
-    function _shuffle(deck) {
-      for(var i = 31; i > 0; i--) {
-        var rand = Math.floor(Math.random() * (i + 1));
-        if(rand > 0) {
-          temp = deck[i];
-          deck[i] = deck[rand];
-          deck[rand] = temp;
-        }
-      }
-      return deck;
-    }
-    function show(name,deck,x) {
-      var deck = buildLabels(deck,x),i,
-          discard = document.getElementsByClassName('discard')[0];
-      deck = _shuffle(deck);
-      Array.prototype.forEach.call(grids[x].children, function(contain,i) {
-        var card = contain.firstElementChild, lt;
-        if (i < 7){
-          lt = 0;
-        } else if (i < 14) {
-          lt = 1;
-        } else if (i < 21) {
-          lt = 2;
-        } else if (i < 28) {
-          lt = 3;
-        } else if (i < 35) {
-          lt = 4;
-        }
-        setTimeout(function(){
-          contain.style.zIndex = 170-i*5;
-          contain.style.left = (lt*5+125+(x*587))+'px';
-          contain.style.top = 5+'px';
-          card.style.boxShadow = '0 0 0 black';
-          card.style.opacity = 1;
-          card.style.transform = '';
-          card.className = name;
-          card.firstElementChild.className = deck[i];
-          card.addEventListener('click',flip);
-        },50*(36-i));
-      });
-      cdCts[x] = 0;
-      setTimeout(function(){grids[x].children[0].firstElementChild.dispatchEvent(click);},2750);
-      setTimeout(function(){grids[x].children[1].firstElementChild.dispatchEvent(click);},3000);
-    }
-    function clearDeck(x){
-      var select = document.getElementsByClassName('select')[x];
-      select.className = 'select icon Empty';
-      select.setAttribute('value','');
-      Array.prototype.forEach.call(select.children,function(elem) {
-        if(elem.hasAttribute('blank')){
-          elem.removeAttribute('blank');
-        }
-      });
-      Array.prototype.forEach.call(grids[x].children, function(contain,i) {
-        contain.firstElementChild.style.opacity = 0;
-        contain.style.top = -300+'px';
-        contain.style.left = (x===0)?0:550+'px';
-        contain.firstElementChild.style.transform = '';
-        contain.firstElementChild.style.boxShadow = '15px 15px 20px black';
-        contain.firstElementChild.removeEventListener('click',test);
-      });
-    }
-    function flip(e) {
-      var x = findPlayer(e.target)-1,
-          contain = grids[x].children[cdCts[x]],
-          card = contain.firstElementChild,
-          left = (x===0) ? 320 : 555,
-          flipdir = (x===0) ? 180:-180;
-          zrotate = Math.floor(Math.random() *360);//* 10 + 90);
-      if(!cdCts[x]) {
-        left = (x===0)?170:340;
-        contain.style.top = 250+'px';
-        card.style.transform = 'rotateY(' + flipdir + 'deg) rotateZ(' + 360 + 'deg)';
-        card.addEventListener('click',test);
-      } else {
-        card.style.transform = 'rotateY(180deg)';
-        card.className += ' deck';
-      }
-      contain.style.left = left+'px';
-      setTimeout(function(){
-        contain.style.zIndex = 0;
-      },200);
-      card.style.boxShadow = '';
-      card.removeEventListener('click',flip);
-      cdCts[x]++;
-    }
-    function test(e){
-      if (e.layerY < 104.5){
-        alert('Player 1');
-      } else {
-        alert('Player 2');
-      }
-    }
-    function findPlayer(elem) {
-      while(elem.className.substr(0,1)!=='p'){
-        elem = elem.parentElement;
-      }
-      elem = parseInt(elem.className.substr(1,1));
-      return elem;
-    }
-    function noShuffle(e) {
-      var button = e.target.parentElement.previousElementSibling.firstElementChild;
-      button.setAttribute('disabled','');
-    }
   </script>
 </body>
 </html>

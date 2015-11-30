@@ -47,6 +47,10 @@ function BrawlDeck(character,x) {
       value: _dealCard.bind(_private),
       enumerable: true
     },
+    'getDeck': {
+      value: _getDeck.bind(_private),
+      enumerable: true
+    },
     'getDeckSize': {
       value: _getDeckSize.bind(_private),
       enumerable: true
@@ -71,6 +75,9 @@ function _cardsLeft() {
 function _dealCard() {
   this.cardUsed++;
   return this.deck[this.cardUsed - 1];
+}
+function _getDeck() {
+  return this.deck;
 }
 function _getDeckSize() {
   return DECKSIZE;
