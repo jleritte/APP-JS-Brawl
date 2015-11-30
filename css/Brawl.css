@@ -183,24 +183,19 @@ INPUT[type=button]:disabled {
 
 
 .vs {
-  height:100px;
-  width: 100px;
-  color: #FFF;
-  font-weight: 200;
-  font-size: 24pt;
-  text-shadow: 1px 0 #000,0 1px #000,-1px 0 #000,0 -1px #000;
-  background: #f1c40f;
+  height:50px;
+  width: 50px;
+  background: #FFF url("../img/versus.png") cover;
   position: relative;
-  text-align: center;
 }
-.vs:before, .vs:after {
+/*.vs:before, .vs:after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  height: 100px;
-  width: 100px;
-  background: #f1c40f;
+  height: 50px;
+  width: 50px;
+  background: #FFF;
   z-index: -1;
 }
 .vs:before {
@@ -209,7 +204,7 @@ INPUT[type=button]:disabled {
 .vs:after {
   transform: rotate(60deg);
 }
-
+*/
 
 /*Character styles*/
 .icon.Bennett {
