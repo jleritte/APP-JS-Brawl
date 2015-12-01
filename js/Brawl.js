@@ -2,6 +2,13 @@ var BrawlDeck = require('./BrawlDeck.js'),
     BrawlDiscard = require('./BrawlDiscard.js'),
     BrawlField = require('./BrawlField.js');
 
+  var grids = document.querySelectorAll('[grid]'),
+      whos = document.getElementsByClassName('who'),
+      change = new Event('change'),
+      click = new Event('click'),
+      cdCts = [0,0];
+
+
 function Brawl(){
   var _private = {
     playArea: new BrawlField(1,2),
@@ -13,8 +20,18 @@ function Brawl(){
             'hitG', 'hit2G', 'blockG',
             'hitR', 'hit2R', 'blockR',
             'clear', 'press', 'freeze'],
-    count: 0
+    count: 0,
+    buildDecksHTML: buildDecksHTML
   };
+  function buildDecksHTML() {
+    Array.prototype.forEach.call(grids,function(elem){
+      var i = 35, t = document.querySelectorAll('template.card')[0];
+      while(i){
+        elem.appendChild(document.importNode(t.content,true));
+        i--;
+      }
+    });
+  }
   Object.defineProperties(this,{
     'init': {
       value: _init.bind(_private),
@@ -28,12 +45,7 @@ window.Brawl = Brawl;
 function _init() {
   console.log(this);
   var that = this;
-  var grids = document.querySelectorAll('[grid]'),
-      whos = document.getElementsByClassName('who'),
-      change = new Event('change'),
-      click = new Event('click'),
-      cdCts = [0,0];
-
+  that.buildDecksHTML();
   Array.prototype.forEach.call(document.querySelectorAll('.buttonBox'),function(elem,i){
     elem.firstElementChild.addEventListener('click', function(){
       whos[i].dispatchEvent(change);
