@@ -134,9 +134,10 @@ function _init() {
   }
   function loadDeck(e){
     var who = e.target.value,
-        player = parseInt(who.substr(-1,1));
+        player = parseInt(who.substr(-1,1)),
+        select = e.target.nextElementSibling;
+    select.className = select.className.replace('select','selected');
     who = who.replace(/\d/,'');
-    clearDeck(player);
     that.deck[player] = new BrawlDeck(who,player);
     show(who,that.deck[player],player);
   }

@@ -42,6 +42,11 @@ INPUT[type=button]:disabled {
   left: 922px;
 }
 
+.selected {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
 .select {
   width: 100px;
   height: 100px;
