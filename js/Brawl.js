@@ -24,8 +24,9 @@ function Brawl(){
     buildDecksHTML: buildDecksHTML
   };
   function buildDecksHTML() {
+    var t = document.querySelectorAll('template.card')[0];
     Array.prototype.forEach.call(grids,function(elem){
-      var i = 35, t = document.querySelectorAll('template.card')[0];
+      var i = 35;
       while(i){
         elem.appendChild(document.importNode(t.content,true));
         i--;
@@ -46,6 +47,18 @@ function _init() {
   console.log(this);
   var that = this;
   that.buildDecksHTML();
+  document.querySelectorAll('[value=Play]')[0].addEventListener('click',startGame);
+  document.querySelectorAll('.vsContain')[0].style.opacity = 1;
+  Array.prototype.forEach.call(whos, function(who) {
+    Array.prototype.forEach.call(who.children, function(option) {
+      if(option.selected === true){
+        option.selected = false;
+      }
+      if(option.value === 'blank'){
+        option.selected = true;
+      }
+    });
+  });
   Array.prototype.forEach.call(document.querySelectorAll('.buttonBox'),function(elem,i){
     elem.firstElementChild.addEventListener('click', function(){
       whos[i].dispatchEvent(change);
@@ -55,14 +68,41 @@ function _init() {
       noShuffle(event);
     });
   });
-  Array.prototype.forEach.call(document.querySelectorAll('.select.icon'),function(elem){
-    elem.addEventListener('click',selectDeck.bind(this));
+  Array.prototype.forEach.call(document.querySelectorAll('.select.icon'),function(elem,i){
+    elem.addEventListener('click',selectChar.bind(this));
+    elem.parentElement.style.left = 350 + (i * 220) + 'px';
   });
   Array.prototype.forEach.call(whos,function(who){
     who.addEventListener('change',loadDeck);
-    who.dispatchEvent(change);
+    //who.dispatchEvent(change);
   });
-  function selectDeck(e) {
+  function startGame(){
+    var t = document.querySelectorAll('template.landing')[0], start = false;
+    Array.prototype.forEach.call(whos,function(who){
+      if(who.value !== "blank"){
+        start = true;
+      } else {
+        start = false;
+      }
+    });
+    if(start){
+      Array.prototype.forEach.call(document.querySelectorAll('[menu]'),function(elem){
+        elem.style.left = '';
+      });
+      document.querySelectorAll('.vsContain')[0].style.opacity = 0;
+      Array.prototype.forEach.call(document.querySelectorAll('[class^=p]'),function(elem){
+        elem.appendChild(document.importNode(t.content,true));
+        elem.lastElementChild.style.opacity = 1;
+        elem.lastElementChild.previousElementSibling.style.opacity = 1;
+      });
+      Array.prototype.forEach.call(whos,function(who){
+        who.dispatchEvent(change);
+      });
+    } else {
+      alert('Select Fighters to Play!');
+    }
+  }
+  function selectChar(e) {
     if(e.target.className.substr(0,6) === 'select'){
       return;
     }
@@ -77,15 +117,6 @@ function _init() {
         option.selected = true;
       }
     });
-    whos[x].dispatchEvent(change);
-  }
-  function loadDeck(e){
-    var who = e.target.value,
-        select = e.target.nextElementSibling,
-        player = parseInt(who.substr(-1,1));
-    who = who.replace(/\d/,'');
-    clearDeck(player);
-    select.parentElement.firstElementChild.firstElementChild.removeAttribute('disabled');
     select.className = 'select icon '+who;
     select.setAttribute('value',who);
     Array.prototype.forEach.call(select.children,function(elem) {
@@ -96,6 +127,16 @@ function _init() {
         elem.setAttribute('blank','');
       }
     });
+  }
+  function selectDeck(e) {
+    selectChar(e);
+    whos[x].dispatchEvent(change);
+  }
+  function loadDeck(e){
+    var who = e.target.value,
+        player = parseInt(who.substr(-1,1));
+    who = who.replace(/\d/,'');
+    clearDeck(player);
     that.deck[player] = new BrawlDeck(who,player);
     show(who,that.deck[player],player);
   }
