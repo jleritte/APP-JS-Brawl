@@ -1,8 +1,12 @@
 * {
   font-family: sans-serif;
+  margin: 0;
 }
 BODY {
+  display: flex;
+  justify-content: center;
   background: #d35400;
+  height: 100vh;
 }
 [blank] {
   display: none !important;
@@ -21,17 +25,31 @@ INPUT[type=button]:disabled {
   color: #333;
   background: #555;
 }
-.buttonBox {
-  width: 100px;
-  border: 1px solid black;
-  border-bottom-width: 0;
+
+[game] {
+  align-self: center;
+  width: 99vw;
+  height: 99vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  transition: all 0.6s ease;
+}
+[class^=p]{
+  display: flex;
+  /*transition: all 0.6s ease;*/
+  flex-basis: 0%;
+}
+.p2 {
+  flex-direction: row-reverse;
+  align-self: flex-end;
+  align-items: flex-end;
 }
 [menu] {
-  position: absolute;
   display: flex;
   flex-flow: column;
   width: 100px;
-  margin-right: 5px;
   top:5px;
   transition: all 0.6s ease;
 }
@@ -53,8 +71,7 @@ INPUT[type=button]:disabled {
   border: 1px solid black;
 }
 .select:hover > .icon {
-  display:block;
-  
+  display: block;
 }
 .select:hover > .icon:hover:after {
   opacity: 0.05;
@@ -62,19 +79,25 @@ INPUT[type=button]:disabled {
 }
 .select > .icon {
   position: relative;
-  top:101px;
-  height: 75px;
+  height: 70px;
+  top: -125px;
   display: none;
-  border: 1px solid black;
-  border-top: 0;
+  width: 100px;
+}
+.p1 .select > .icon {
+  left: -101px;
+}
+.p2 .select > .icon {
+  left: 101px;
 }
 .select > .icon:after {
   content: ' ';
   position: absolute;
   width: 100px;
-  height: 75px;
+  height: 70px;
   background: #000;
   opacity: 0.7;
+  transition: all 0.6s ease;
 }
 .select:before, .select > .icon:before {
   content: attr(value);
@@ -89,17 +112,15 @@ INPUT[type=button]:disabled {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
-
-[grid] {
-  display: flex;
-  flex-flow: row wrap;
-  width: 1000px;
+[playArea] {
+  align-self: center;
+  background-color: #fff;
+  width: 100%;
+  height: 170px;
 }
-
 .contain {
-  perspective: 700;
   position: absolute;
+  perspective: 700;
   transition: all 0.6s ease;
   padding-top: 0;
   width: 152px;
@@ -156,9 +177,9 @@ INPUT[type=button]:disabled {
 .deckLanding, .discard {
   border: 1px solid black;
   height: 221px;
-  position: absolute;
   top: 0;
   width: 162px;
+  margin: 0 5px;
   z-index: -1;
   transition: all 0.6s ease;
 }
@@ -167,29 +188,15 @@ INPUT[type=button]:disabled {
               linear-gradient(235deg, rgba(0,0,0,0) 49%, rgba(255,0,0,1) 50%, rgba(0,0,0,0) 51%),
               #bdc3c7;
   box-shadow: inset 0 0 0 7px #bdc3c7;
-  transition: all 0.6s ease;
 }
 .discard {
   background: #bdc3c7;
 }
-.p1 > .deckLanding {
-  left:139px;
-}
-.p1 > .discard {
-  left: 315px;
-}
-.p2 > .deckLanding {
-  left: 726px;
-}
-.p2 > .discard {
-  left:550px;
-}
 .vsContain {
-  top: 15px;
-  left: 459px;
-  position: absolute;
   transition: all 0.6s ease;
   opacity: 1;
+  align-self: center;
+  margin: 0 10px;
 }
 .vsContain > INPUT {
   position: relative;

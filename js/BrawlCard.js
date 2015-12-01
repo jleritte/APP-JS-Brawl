@@ -7,9 +7,8 @@ var BLANK = -1,
     PRESS = 11,
     FREEZE = 12;
 
-function BrawlCard(theType,play) {
+function BrawlCard(theType) {
   var _private = {
-    player: play,
     type: theType
   };
 
@@ -20,10 +19,6 @@ function BrawlCard(theType,play) {
     },
     'toString': {
       value: _toString.bind(_private),
-      emunerable: true
-    },
-    'getPlayer': {
-      value: _getPlayer.bind(_private),
       emunerable: true
     }
   });
@@ -49,9 +44,6 @@ function _toString() {
     case FREEZE:    return 'Freeze';
     default:        return '??';
   }
-}
-function _getPlayer() {
-  return this.player;
 }
 
 module.exports = BrawlCard;

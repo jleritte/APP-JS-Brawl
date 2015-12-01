@@ -8,17 +8,17 @@ var BENNETT = [7,8,0,1,3,0,1,4,0,1,6,1,3],
     PEARL =   [5,7,1,1,7,1,1,1,0,1,5,2,3];
 var DECKSIZE = 35;
 
-function BrawlDeck(character,x) {
+function BrawlDeck(character) {
   var _private = {
     deck: undefined,
     cardUsed: undefined
   };
-  function buildDeck(deckBuilt, player) {
+  function buildDeck(deckBuilt) {
     _private.deck = [DECKSIZE];
     var cardCt = 0, i;
     for(var type = 0; type < 13 ; type++) {
         for(i = 1; i <= deckBuilt[type]; i++) {
-          _private.deck[cardCt] = new BrawlCard(type,player);
+          _private.deck[cardCt] = new BrawlCard(type);
           cardCt++;
         }
     }
@@ -26,12 +26,12 @@ function BrawlDeck(character,x) {
   }
 
   switch(character) {
-    case 'Bennett':  buildDeck(BENNETT,x);console.log('Bennett');break;
-    case 'Chris':    buildDeck(CHRIS,x);console.log('Chris');break;
-    case 'Darwin':   buildDeck(DARWIN,x);console.log('Darwin');break;
-    case 'Hale':     buildDeck(HALE,x);console.log('Hale');break;
-    case 'Morgan':   buildDeck(MORGAN,x);console.log('Morgan');break;
-    case 'Pearl':    buildDeck(PEARL,x);console.log('Pearl');break;
+    case 'Bennett':  buildDeck(BENNETT);console.log('Bennett');break;
+    case 'Chris':    buildDeck(CHRIS);console.log('Chris');break;
+    case 'Darwin':   buildDeck(DARWIN);console.log('Darwin');break;
+    case 'Hale':     buildDeck(HALE);console.log('Hale');break;
+    case 'Morgan':   buildDeck(MORGAN);console.log('Morgan');break;
+    case 'Pearl':    buildDeck(PEARL);console.log('Pearl');break;
   }
 
   Object.defineProperties(this,{

@@ -30,7 +30,7 @@ function _getCard() {
   if(cardLocation >= 0) {
     return this.discard[cardLocation - 1];
   } else {
-    return new BrawlCard(-1,0);
+    return new BrawlCard(-1);
   }
 }
 function _playCard() {
