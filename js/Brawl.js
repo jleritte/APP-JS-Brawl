@@ -2,11 +2,11 @@ var BrawlDeck = require('./BrawlDeck.js'),
     BrawlDiscard = require('./BrawlDiscard.js'),
     BrawlField = require('./BrawlField.js');
 
-  var grids = document.querySelectorAll('[grid]'),
-      whos = document.getElementsByClassName('who'),
-      change = new Event('change'),
-      click = new Event('click'),
-      cdCts = [0,0];
+var grids = document.querySelectorAll('[grid]'),
+    whos = document.getElementsByClassName('who'),
+    change = new Event('change'),
+    click = new Event('click'),
+    cdCts = [0,0];
 
 
 function Brawl(){
@@ -44,12 +44,12 @@ function Brawl(){
     who = who.replace(/\d/,'');
     _private.deck[player] = new BrawlDeck(who,player);
     show(who,_private.deck[player],player);
+    select.nextElementSibling.innerHTML = _private.deck[player].cardsLeft();
   }
 
   function buildCardClass(deck,x) {
     var i, bd=[];
     for(i = 0; i < deck.length; i++){
-      var front = grids[x].children[i].firstElementChild.firstElementChild;
       bd.push(_private.icons[deck[i].getType()]);
     }
     return bd;
@@ -87,6 +87,34 @@ function Brawl(){
     cdCts[x] = 0;
     setTimeout(function(){grids[x].children[0].firstElementChild.dispatchEvent(click);},2750);
     setTimeout(function(){grids[x].children[1].firstElementChild.dispatchEvent(click);},3000);
+  }
+
+  function _flip(e) {
+    var x = _findPlayer(e.target)-1,
+      deck = _private.deck[x],
+        contain = grids[x].children[35-deck.cardsLeft()],
+        card = deck.dealCard(),
+        cardHtml = contain.firstElementChild,
+        left = 320 + (x * 235),
+        flipdir = 180 - (x * 360);
+        zrotate = Math.floor(Math.random() * 360);//* 10 + 90);
+    if(!card.getType() && deck.cardsLeft() === 34) {
+      left = 170 +(x * 170);
+      contain.style.top = 250+'px';
+      cardHtml.style.transform = 'rotateY(' + flipdir + 'deg) rotateZ(' + 360 + 'deg)';
+      cardHtml.addEventListener('click',_playtoBase);
+    } else {
+      cardHtml.style.transform = 'rotateY(180deg)';
+      cardHtml.className += ' deck';
+    }
+    contain.style.left = left+'px';
+    setTimeout(function(){
+      contain.style.zIndex = 0;
+    },200);
+    cardHtml.style.boxShadow = '';
+    cardHtml.removeEventListener('click',_flip);
+    document.querySelectorAll('.cdlt')[x].innerHTML = deck.cardsLeft();
+    // cdCts[x]++;
   }
 
   Object.defineProperties(this,{
@@ -144,7 +172,7 @@ function _startGame(){
         elem.appendChild(document.importNode(land.content,true));
       });
       Array.prototype.forEach.call(whos,function(who){
-        // who.dispatchEvent(change);
+        who.dispatchEvent(change);
       });
     },350);
     setTimeout(function(){
@@ -205,30 +233,7 @@ function _clearDeck(x){
   });
 }
 
-function _flip(e) {
-  var x = findPlayer(e.target)-1,
-      contain = grids[x].children[cdCts[x]],
-      card = contain.firstElementChild,
-      left = 320 + (x * 235),
-      flipdir = 180 - (x * 360);
-      zrotate = Math.floor(Math.random() * 360);//* 10 + 90);
-  if(!cdCts[x]) {
-    left = 170 +(x * 170);
-    contain.style.top = 250+'px';
-    card.style.transform = 'rotateY(' + flipdir + 'deg) rotateZ(' + 360 + 'deg)';
-    card.addEventListener('click',_playtoBase);
-  } else {
-    card.style.transform = 'rotateY(180deg)';
-    card.className += ' deck';
-  }
-  contain.style.left = left+'px';
-  setTimeout(function(){
-    contain.style.zIndex = 0;
-  },200);
-  card.style.boxShadow = '';
-  card.removeEventListener('click',_flip);
-  cdCts[x]++;
-}
+
 
 function _playtoBase(e){
   if (e.layerY < 104.5){
@@ -238,7 +243,7 @@ function _playtoBase(e){
   }
 }
 
-function findPlayer(elem) {
+function _findPlayer(elem) {
   while(elem.className.substr(0,1)!=='p'){
     elem = elem.parentElement;
   }
