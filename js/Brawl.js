@@ -13,7 +13,7 @@ function Brawl(){
   var _private = {
     playArea: new BrawlField(1,2),
     deck: [],
-    discard: [],
+    discard: [new BrawlDiscard(),new BrawlDiscard()],
     currentCard: [],
     icons: ['base',
             'hitB', 'hit2B', 'blockB',
@@ -26,7 +26,7 @@ function Brawl(){
   };
 
   function buildDecksHTML() {
-    var t = document.querySelectorAll('template.card')[0];
+    var t = document.querySelector('template.card');
     Array.prototype.forEach.call(grids,function(elem){
       var i = 35;
       while(i){
@@ -58,24 +58,25 @@ function Brawl(){
   function show(name,deck,x) {
     deck.shuffle();
     deck = buildCardClass(deck.getDeck(),x);
-    var i, discard = document.getElementsByClassName('discard')[0];
+    var i,
+        land = document.querySelectorAll('.deckLanding')[x];
     Array.prototype.forEach.call(grids[x].children, function(contain,i) {
       var card = contain.firstElementChild, lt;
       if (i < 7){
-        lt = 0;
+        lt = 20;
       } else if (i < 14) {
-        lt = 1;
+        lt = 15;
       } else if (i < 21) {
-        lt = 2;
+        lt = 10;
       } else if (i < 28) {
-        lt = 3;
+        lt = 5;
       } else if (i < 35) {
-        lt = 4;
+        lt = 0;
       }
       setTimeout(function(){
         contain.style.zIndex = 170-i*5;
-        contain.style.left = (lt*5+125+(x*587))+'px';
-        contain.style.top = 5+'px';
+        contain.style.left = land.offsetLeft+5-lt+'px';
+        contain.style.top = land.offsetTop + 8 + 'px';
         card.style.boxShadow = '0 0 0 black';
         card.style.opacity = 1;
         card.style.transform = '';
@@ -86,28 +87,34 @@ function Brawl(){
     });
     cdCts[x] = 0;
     setTimeout(function(){grids[x].children[0].firstElementChild.dispatchEvent(click);},2750);
-    setTimeout(function(){grids[x].children[1].firstElementChild.dispatchEvent(click);},3000);
+    setTimeout(function(){grids[x].children[1].firstElementChild.dispatchEvent(click);},3650);
   }
 
   function _flip(e) {
     var x = _findPlayer(e.target)-1,
-      deck = _private.deck[x],
-        contain = grids[x].children[35-deck.cardsLeft()],
+        deck = _private.deck[x],
+        contain = grids[x].firstElementChild,
         card = deck.dealCard(),
         cardHtml = contain.firstElementChild,
-        left = 320 + (x * 235),
-        flipdir = 180 - (x * 360);
+        left = document.querySelectorAll('.discard')[x].offsetLeft + 5,
+        flipdir = 180 - (x * 360),
         zrotate = Math.floor(Math.random() * 360);//* 10 + 90);
     if(!card.getType() && deck.cardsLeft() === 34) {
-      left = 170 +(x * 170);
-      contain.style.top = 250+'px';
+      contain.style.top = document.querySelector('[playArea]').offsetTop + 'px';
       cardHtml.style.transform = 'rotateY(' + flipdir + 'deg) rotateZ(' + 360 + 'deg)';
+      setTimeout(function(){
+        document.querySelector('[playArea]').appendChild(contain);
+      },600);
       cardHtml.addEventListener('click',_playtoBase);
     } else {
+      _private.discard[x].setCard(card);
       cardHtml.style.transform = 'rotateY(180deg)';
       cardHtml.className += ' deck';
+      contain.style.left = left+'px';
+      setTimeout(function(){
+        document.querySelectorAll('.discard')[x].appendChild(contain);
+      },600);
     }
-    contain.style.left = left+'px';
     setTimeout(function(){
       contain.style.zIndex = 0;
     },200);
@@ -131,10 +138,10 @@ function _init() {
   console.log(this);
   var that = this;
   that.buildDecksHTML();
-  document.querySelectorAll('[value=Play]')[0].addEventListener('click',_startGame);
-  document.querySelectorAll('.vsContain')[0].style.opacity = 1;
-  document.querySelectorAll('[game]')[0].style.height = 14 + 'vh';
-  document.querySelectorAll('[game]')[0].style.width = 27 + 'vw';
+  document.querySelector('[value=Play]').addEventListener('click',_startGame);
+  document.querySelector('.vsContain').style.opacity = 1;
+  document.querySelector('[game]').style.height = 104 + 'px';
+  document.querySelector('[game]').style.width = 321 + 'px';
   Array.prototype.forEach.call(whos, function(who) {
     Array.prototype.forEach.call(who.children, function(option) {
       if(option.selected === true){
@@ -154,9 +161,10 @@ function _init() {
 }
 
 function _startGame(){
-  var game = document.querySelectorAll('[game]')[0],land = document.querySelectorAll('template.landing')[0],
-      field = document.importNode(document.querySelectorAll('template.field')[0].content,true).firstElementChild,
-      vs = document.querySelectorAll('.vsContain')[0],
+  var game = document.querySelector('[game]'),
+      land = document.querySelector('template.landing'),
+      field = document.importNode(document.querySelector('template.field').content,true).firstElementChild,
+      vs = document.querySelector('.vsContain'),
       start = false;
   if(whos[0].value !== 'blank' && whos[1].value !== 'blank'){
     start = true;
@@ -174,13 +182,11 @@ function _startGame(){
       Array.prototype.forEach.call(whos,function(who){
         who.dispatchEvent(change);
       });
-    },350);
-    setTimeout(function(){
       Array.prototype.forEach.call(document.querySelectorAll('[class^=p]'),function(elem){
         elem.style.flexBasis = '100%';
       });
       game.insertBefore(field,vs);
-      document.querySelectorAll('[game]')[0].removeChild(vs);
+      game.removeChild(vs);
     },650);
   } else {
     alert('Select Fighters to Play!');
