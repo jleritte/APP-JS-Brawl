@@ -29,7 +29,9 @@ function Brawl(){
     Array.prototype.forEach.call(grids,function(elem){
       var i = 35;
       while(i){
-        elem.appendChild(document.importNode(t.content,true));
+        var temp = document.importNode(t.content,true);
+        temp.firstElementChild.setAttribute('cdnm',i);
+        elem.appendChild(temp);
         i--;
       }
     });
@@ -44,6 +46,7 @@ function Brawl(){
     _private.deck[player] = new BrawlDeck(who,player);
     show(who,_private.deck[player],player);
     select.nextElementSibling.innerHTML = _private.deck[player].cardsLeft();
+    select.nextElementSibling.style.opacity = 1;
   }
 
   function buildCardClass(deck,x) {
@@ -81,18 +84,21 @@ function Brawl(){
         card.style.transform = '';
         card.className = name;
         card.firstElementChild.className = deck[i];
-        card.addEventListener('click',_flip);
+        card.addEventListener('click',flip);
       },50*(36-i));
     });
     setTimeout(function(){grids[x].children[0].firstElementChild.dispatchEvent(click);},2750);
     setTimeout(function(){grids[x].children[1].firstElementChild.dispatchEvent(click);},3650);
   }
 
-  function _flip(e) {
+  function flip(e) {
     var x = _findPlayer(e.target)-1,
         deck = _private.deck[x],
-        contain = grids[x].firstElementChild,
-        card = deck.dealCard(),
+        contain = grids[x].firstElementChild;
+    if(parseInt(contain.getAttribute('cdnm')) !== deck.cardsLeft()){
+      return;
+    }
+    var card = deck.dealCard(),
         cardHtml = contain.firstElementChild,
         left = document.querySelectorAll('.discard')[x].offsetLeft + 5,
         flipdir = 180 - (x * 360),
@@ -102,7 +108,7 @@ function Brawl(){
       cardHtml.style.transform = 'rotateY(' + flipdir + 'deg) rotateZ(' + 360 + 'deg)';
       setTimeout(function(){
         document.querySelector('[playArea]').appendChild(contain);
-      },600);
+      },500);
       cardHtml.addEventListener('click',_playtoBase);
     } else {
       _private.discard[x].setCard(card);
@@ -111,14 +117,18 @@ function Brawl(){
       contain.style.left = left+'px';
       setTimeout(function(){
         document.querySelectorAll('.discard')[x].appendChild(contain);
-      },600);
+      },500);
     }
     setTimeout(function(){
       contain.style.zIndex = 0;
     },200);
     cardHtml.style.boxShadow = '';
-    cardHtml.removeEventListener('click',_flip);
+    cardHtml.removeEventListener('click',flip);
     document.querySelectorAll('[cdlt]')[x].innerHTML = deck.cardsLeft();
+  }
+
+  function moveToPlayArea(elem) {
+
   }
 
   Object.defineProperties(this,{
@@ -132,12 +142,11 @@ function Brawl(){
 window.Brawl = Brawl;
 
 function _init() {
-  console.log(this);
   var that = this;
   that.buildDecksHTML();
   document.querySelector('[value=Play]').addEventListener('click',_startGame);
   document.querySelector('.vsContain').style.opacity = 1;
-  document.querySelector('[game]').style.height = 104 + 'px';
+  document.querySelector('[game]').style.height = 109 + 'px';
   document.querySelector('[game]').style.width = 321 + 'px';
   Array.prototype.forEach.call(whos, function(who) {
     Array.prototype.forEach.call(who.children, function(option) {
