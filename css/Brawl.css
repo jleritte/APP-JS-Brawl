@@ -107,11 +107,16 @@ INPUT[type=button]:disabled {
   text-shadow: 1px 0 #FFF, 0 1px #FFF, -1px 0 #FFF, 0 -1px #FFF;
   width:100px;
 }
-
 .icon {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+[cdlt] {
+  margin-top: 5px;
+  border: 1px solid black;
+}
+
 [playArea] {
   align-self: center;
   width: 100%;
@@ -119,6 +124,7 @@ INPUT[type=button]:disabled {
   display: flex;
   justify-content: center;
 }
+
 .contain {
   position: absolute;
   perspective: 700;

@@ -5,8 +5,7 @@ var BrawlDeck = require('./BrawlDeck.js'),
 var grids = document.querySelectorAll('[grid]'),
     whos = document.getElementsByClassName('who'),
     change = new Event('change'),
-    click = new Event('click'),
-    cdCts = [0,0];
+    click = new Event('click');
 
 
 function Brawl(){
@@ -85,7 +84,6 @@ function Brawl(){
         card.addEventListener('click',_flip);
       },50*(36-i));
     });
-    cdCts[x] = 0;
     setTimeout(function(){grids[x].children[0].firstElementChild.dispatchEvent(click);},2750);
     setTimeout(function(){grids[x].children[1].firstElementChild.dispatchEvent(click);},3650);
   }
@@ -120,8 +118,7 @@ function Brawl(){
     },200);
     cardHtml.style.boxShadow = '';
     cardHtml.removeEventListener('click',_flip);
-    document.querySelectorAll('.cdlt')[x].innerHTML = deck.cardsLeft();
-    // cdCts[x]++;
+    document.querySelectorAll('[cdlt]')[x].innerHTML = deck.cardsLeft();
   }
 
   Object.defineProperties(this,{
