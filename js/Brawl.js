@@ -26,11 +26,12 @@ function Brawl(){
 
   function buildDecksHTML() {
     var t = document.querySelector('template.card');
-    Array.prototype.forEach.call(grids,function(elem){
+    Array.prototype.forEach.call(grids,function(elem,indx){
       var i = 35;
       while(i){
         var temp = document.importNode(t.content,true);
         temp.firstElementChild.setAttribute('cdnm',i);
+        temp.firstElementChild.setAttribute('plyr',indx);
         elem.appendChild(temp);
         i--;
       }
@@ -104,12 +105,19 @@ function Brawl(){
         flipdir = 180 - (x * 360),
         zrotate = Math.floor(Math.random() * 360);//* 10 + 90);
     if(!card.getType() && deck.cardsLeft() === 34) {
-      contain.style.top = document.querySelector('[playArea]').offsetTop + 'px';
+      var side = x ? 'R' : 'L',
+          playA = document.querySelector('[playArea]'),
+          center = playA.clientWidth / 2 - (150 / 2);
       cardHtml.style.transform = 'rotateY(' + flipdir + 'deg) rotateZ(' + 360 + 'deg)';
+      contain.style.top = playA.offsetTop + 'px';
+      if (side === 'R') {
+        contain.style.left = center + (150*0.75) + 'px';
+      } else {
+        contain.style.left = center - (150*0.75) + 'px';
+      }
       setTimeout(function(){
-        document.querySelector('[playArea]').appendChild(contain);
+        playA.appendChild(contain);
       },500);
-      moveToPlayArea(contain);
       cardHtml.addEventListener('click',_playtoBase);
     } else {
       _private.discard[x].setCard(card);
@@ -128,12 +136,21 @@ function Brawl(){
     document.querySelectorAll('[cdlt]')[x].innerHTML = deck.cardsLeft();
   }
 
-  function moveToPlayArea(elem) {
+  function moveToPlayArea(elem,side) {
     var where = document.querySelector('[playArea]'),
         CARDWIDTH = 150,
-        center = where.clientWidth/2 - (CARDWIDTH/2);
-        console.log(where);
-        elem.style.left = center + 'px';
+        center = where.clientWidth / 2 - (CARDWIDTH / 2);
+    console.log(side,elem,where);
+    elem.style.top = where.offsetTop + 'px';
+    if (where.childElementCount === 0) {
+      elem.style.left = center + 'px';
+    } else if (where.childElementCount === 1){
+      if (side === 'R') {
+        elem.style.left = center + (CARDWIDTH*0.75) + 'px';
+      } else {
+        elem.style.left = center - (CARDWIDTH*0.75) + 'px';
+      }
+    }
   }
 
   Object.defineProperties(this,{
