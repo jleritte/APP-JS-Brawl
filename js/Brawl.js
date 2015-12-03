@@ -109,6 +109,7 @@ function Brawl(){
       setTimeout(function(){
         document.querySelector('[playArea]').appendChild(contain);
       },500);
+      moveToPlayArea(contain);
       cardHtml.addEventListener('click',_playtoBase);
     } else {
       _private.discard[x].setCard(card);
@@ -128,7 +129,11 @@ function Brawl(){
   }
 
   function moveToPlayArea(elem) {
-
+    var where = document.querySelector('[playArea]'),
+        CARDWIDTH = 150,
+        center = where.clientWidth/2 - (CARDWIDTH/2);
+        console.log(where);
+        elem.style.left = center + 'px';
   }
 
   Object.defineProperties(this,{

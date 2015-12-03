@@ -125,7 +125,7 @@ INPUT[type=button]:disabled {
 
 [playArea] {
   align-self: center;
-  width: 90%;
+  width: 100%;
   height: 209px;
   display: flex;
   justify-content: center;
