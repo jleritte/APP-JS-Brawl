@@ -142,15 +142,18 @@ function Brawl(){
         center = where.clientWidth / 2 - (CARDWIDTH / 2);
     console.log(side,elem,where);
     elem.style.top = where.offsetTop + 'px';
-    if (where.childElementCount === 0) {
-      elem.style.left = center + 'px';
-    } else if (where.childElementCount === 1){
+    if (where.childElementCount === 1) {
       if (side === 'R') {
         elem.style.left = center + (CARDWIDTH*0.75) + 'px';
       } else {
         elem.style.left = center - (CARDWIDTH*0.75) + 'px';
       }
+    } else if (where.childElementCount === 2){
+      elem.style.left = center + 'px';
     }
+    setTimeout(function(){
+      where.appendChild(where);
+    },500);
   }
 
   Object.defineProperties(this,{
