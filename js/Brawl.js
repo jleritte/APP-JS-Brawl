@@ -7,6 +7,9 @@ var grids = document.querySelectorAll('[grid]'),
     change = new Event('change'),
     click = new Event('click');
 
+var CARDTEMPLATE =  '<div class="contain"><div card><div front></div><div back></div></div></div>';
+
+
 
 function Brawl(){
   var _private = {
@@ -23,6 +26,15 @@ function Brawl(){
     buildDecksHTML: buildDecksHTML,
     loadDeck: loadDeck
   };
+
+  function loadTemplates() {
+    var body = document.querySelector('body'),
+        template = document.createElement('template');
+
+    template.className = 'card';
+    template.innerHTML = CARDTEMPLATE;
+    bady.appendChild(template);
+  }
 
   function buildDecksHTML() {
     var t = document.querySelector('template.card');
@@ -168,6 +180,7 @@ window.Brawl = Brawl;
 
 function _init() {
   var that = this;
+  that.loadTemplates();
   that.buildDecksHTML();
   document.querySelector('[value=Play]').addEventListener('click',_startGame);
   document.querySelector('.vsContain').style.opacity = 1;
