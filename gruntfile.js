@@ -21,6 +21,14 @@ module.exports = function(grunt) {
       build: {
         src: 'resources/app.js',
         dest: 'resources/app.min.js'
+      },
+      map: {
+        options: {
+          sourceMap: true
+        },
+        files: {
+          'resources/app.min.js': ['resources/app.js']
+        }
       }
     },
     watch: {
