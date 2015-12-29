@@ -7,9 +7,12 @@ var grids = document.querySelectorAll('[grid]'),
     change = new Event('change'),
     click = new Event('click');
 
-var CARDTEMPLATE =  '<div class="contain"><div card><div front></div><div back></div></div></div>';
-
-
+var CARDTEMPLATE =  ['<div class="contain">',
+                      '<div card>',
+                        '<div front></div>',
+                        '<div back></div>',
+                      '</div>',
+                    '</div>'].join('\n');
 
 function Brawl(){
   var _private = {
