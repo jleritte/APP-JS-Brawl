@@ -25,7 +25,7 @@ module.exports = function(grunt) {
     },
     watch: {
       js: {
-        files: ['js/*.js'],
+        files: ['js/*.js','js/*.json'],
         tasks: ['jshint','browserify'],
         options: {
           atBegin: true

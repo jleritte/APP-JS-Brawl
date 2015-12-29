@@ -2,17 +2,12 @@ var BrawlDeck = require('./BrawlDeck.js'),
     BrawlDiscard = require('./BrawlDiscard.js'),
     BrawlField = require('./BrawlField.js');
 
-var grids = document.querySelectorAll('[grid]'),
-    whos = document.getElementsByClassName('who'),
+var grids,
+    whos,
     change = new Event('change'),
-    click = new Event('click');
-
-var CARDTEMPLATE =  ['<div class="contain">',
-                      '<div card>',
-                        '<div front></div>',
-                        '<div back></div>',
-                      '</div>',
-                    '</div>'].join('\n');
+    click = new Event('click'),
+    body = document.querySelector('body'),
+    templates = require('./templates');
 
 function Brawl(){
   var _private = {
@@ -26,18 +21,28 @@ function Brawl(){
             'hitR', 'hit2R', 'blockR',
             'clear', 'press', 'freeze'],
     count: 0,
-    loadTemplates: loadTemplates,
+    fillBody: fillBody,
     buildDecksHTML: buildDecksHTML,
     loadDeck: loadDeck
   };
 
-  function loadTemplates() {
-    var body = document.querySelector('body'),
-        template = document.createElement('template');
+  function fillBody() {
+    var keys = Object.keys(templates);
 
-    template.className = 'card';
-    template.innerHTML = CARDTEMPLATE;
-    body.appendChild(template);
+    keys.forEach(function(elem){
+      var template = document.createElement('template');
+
+      if(elem === 'game'){
+        template.innerHTML = templates[elem].join("\n");
+        body.appendChild(document.importNode(template.content,true));
+      } else {
+        template.className = elem;
+        template.innerHTML = templates[elem].join("\n");
+        body.appendChild(template);
+      }
+    });
+    grids = document.querySelectorAll('[grid]');
+    whos = document.getElementsByClassName('who');
   }
 
   function buildDecksHTML() {
@@ -184,7 +189,7 @@ window.Brawl = Brawl;
 
 function _init() {
   var that = this;
-  that.loadTemplates();
+  that.fillBody();
   that.buildDecksHTML();
   document.querySelector('[value=Play]').addEventListener('click',_startGame);
   document.querySelector('.vsContain').style.opacity = 1;
