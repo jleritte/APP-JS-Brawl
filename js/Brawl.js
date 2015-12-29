@@ -26,6 +26,7 @@ function Brawl(){
             'hitR', 'hit2R', 'blockR',
             'clear', 'press', 'freeze'],
     count: 0,
+    loadTemplates: loadTemplates,
     buildDecksHTML: buildDecksHTML,
     loadDeck: loadDeck
   };
@@ -36,7 +37,7 @@ function Brawl(){
 
     template.className = 'card';
     template.innerHTML = CARDTEMPLATE;
-    bady.appendChild(template);
+    body.appendChild(template);
   }
 
   function buildDecksHTML() {
