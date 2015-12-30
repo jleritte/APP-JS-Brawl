@@ -1,7 +1,7 @@
 {
   "name": "Brawl",
   "version": "1.0.0",
-  "description": "Your Mom",
+  "description": "The Card game Brawl",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
