@@ -9,6 +9,9 @@ var grids,
     body = document.querySelector('body'),
     templates = require('./templates');
 
+window.Brawl = new Brawl();
+window.Brawl.init();
+
 function Brawl(){
   var _private = {
     playArea: new BrawlField(1,2),
