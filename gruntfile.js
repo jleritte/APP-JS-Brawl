@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         browserifyOptions: {
           paths: [
             path+'js',
-            path+'js/components'
+            path+'js/**'
           ]
         }
       },
@@ -45,8 +45,14 @@ module.exports = function(grunt) {
           'box-model': false,
           'fallback-colors': false,
           'compatible-vendor-prefixes': false,
+          'unqualified-attributes': 1, //remove this
+          'adjoining-classes': 1, // remove this
         },
-        src: [path+'**/*.css']
+        src: [
+            path + 'css/**/*.css',
+            path + 'js/**/*.css',
+            path + 'js/**/**/css/*.css'
+          ]
       },
     },
     cssmin: {
@@ -56,9 +62,9 @@ module.exports = function(grunt) {
       target: {
         files: {
           'build/resources/css/styles.min.css': [
-            path + 'css/*.css',
-            path + 'js/console/components/**/*.css',
-            path + 'js/console/components/**/**/css/*.css'
+            path + 'css/**/*.css',
+            path + 'js/**/*.css',
+            path + 'js/**/**/css/*.css'
           ]
         }
       }
@@ -81,7 +87,7 @@ module.exports = function(grunt) {
         browser: true
       },
       files: {
-        src: ['js/*.js']
+        src: ['js/**/*.js']
       }
     },
     replace: {
@@ -110,10 +116,24 @@ module.exports = function(grunt) {
     },
     watch: {
       js: {
-        files: ['js/*.js','js/*.json'],
-        tasks: ['jshint','browserify','uglify'],
+        files: [path+'js/**/*.js'],
+        tasks: ['jshint','browserify','uglify']
+      },
+      css: {
+        files: [
+          path+'css/**/*.css',
+          path+'js/**/*.css'
+        ],
+        tasks: ['csslint','cssmin']
+      },
+      html: {
+        files: [path+'home.html'],
+        tasks: ['replace']
+        },
+      livereload: {
+        files: ['build/resources/**/*'],
         options: {
-          atBegin: true
+          livereload: 8082
         }
       }
     }

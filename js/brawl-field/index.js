@@ -1,4 +1,4 @@
-var BrawlBase = require('./BrawlBase.js');
+var BrawlBase = require('brawl-base');
 
 function BrawlField(p1, p2) {
   var _private = {

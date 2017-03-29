@@ -1,4 +1,4 @@
-var BrawlCard = require('./BrawlCard.js');
+var BrawlCard = require('brawl-card');
 
 function BrawlDiscard() {
   var _private = {

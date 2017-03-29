@@ -1,0 +1,46 @@
+.icon.Chris {
+  background-image: url("./img/Chris/IconChris350.jpg");
+}
+
+BRAWL-CARD[is=chris-card]:after {
+  background-image: url("./img/Chris/back.jpg");
+}
+BRAWL-CARD[is=chris-card].base:before {
+  background-image: url("./img/Chris/base.jpg");
+}
+BRAWL-CARD[is=chris-card].hitB:before {
+  background-image: url("./img/Chris/hitB.jpg");
+}
+BRAWL-CARD[is=chris-card].hit2B:before {
+  background-image: url("./img/Chris/hit2B.jpg");
+}
+BRAWL-CARD[is=chris-card].blockB:before {
+  background-image: url("./img/Chris/blockB.jpg");
+}
+BRAWL-CARD[is=chris-card].hitG:before {
+  background-image: url("./img/Chris/hitG.jpg");
+}
+BRAWL-CARD[is=chris-card].hit2G:before {
+  background-image: url("./img/Chris/hit2G.jpg");
+}
+BRAWL-CARD[is=chris-card].blockG:before {
+  background-image: url("./img/Chris/blockG.jpg");
+}
+BRAWL-CARD[is=chris-card].hitR:before {
+  background-image: url("./img/Chris/hitR.jpg");
+}
+BRAWL-CARD[is=chris-card].hit2R:before {
+  background-image: url("./img/Chris/hit2R.jpg");
+}
+BRAWL-CARD[is=chris-card].blockR:before {
+  background-image: url("./img/Chris/blockR.jpg");
+}
+BRAWL-CARD[is=chris-card].clear:before {
+  background-image: url("./img/Chris/clear.jpg");
+}
+BRAWL-CARD[is=chris-card].press:before {
+  background-image: url("./img/Chris/press.jpg");
+}
+BRAWL-CARD[is=chris-card].freeze:before {
+  background-image: url("./img/Chris/freeze.jpg");
+}

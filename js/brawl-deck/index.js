@@ -1,4 +1,4 @@
-var  BrawlCard = require('./BrawlCard.js');
+var  BrawlCard = require('brawl-card');
 
 var BENNETT = [7,8,0,1,3,0,1,4,0,1,6,1,3],
     CHRIS =   [4,7,0,2,5,0,2,8,0,2,2,0,3],

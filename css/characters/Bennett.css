@@ -1,0 +1,46 @@
+.icon.Bennett {
+  background-image: url("./img/Bennett/IconBennett350.jpg");
+}
+
+BRAWL-CARD[is=bennett-card]:after {
+  background-image: url("./img/Bennett/back.jpg");
+}
+BRAWL-CARD[is=bennett-card].base:before {
+  background-image: url("./img/Bennett/base.jpg");
+}
+BRAWL-CARD[is=bennett-card].hitB:before {
+  background-image: url("./img/Bennett/hitB.jpg");
+}
+BRAWL-CARD[is=bennett-card].hit2B:before {
+  background-image: url("./img/Bennett/hit2B.jpg");
+}
+BRAWL-CARD[is=bennett-card].blockB:before {
+  background-image: url("./img/Bennett/blockB.jpg");
+}
+BRAWL-CARD[is=bennett-card].hitG:before {
+  background-image: url("./img/Bennett/hitG.jpg");
+}
+BRAWL-CARD[is=bennett-card].hit2G:before {
+  background-image: url("./img/Bennett/hit2G.jpg");
+}
+BRAWL-CARD[is=bennett-card].blockG:before {
+  background-image: url("./img/Bennett/blockG.jpg");
+}
+BRAWL-CARD[is=bennett-card].hitR:before {
+  background-image: url("./img/Bennett/hitR.jpg");
+}
+BRAWL-CARD[is=bennett-card].hit2R:before {
+  background-image: url("./img/Bennett/hit2R.jpg");
+}
+BRAWL-CARD[is=bennett-card].blockR:before {
+  background-image: url("./img/Bennett/blockR.jpg");
+}
+BRAWL-CARD[is=bennett-card].clear:before {
+  background-image: url("./img/Bennett/clear.jpg");
+}
+BRAWL-CARD[is=bennett-card].press:before {
+  background-image: url("./img/Bennett/press.jpg");
+}
+BRAWL-CARD[is=bennett-card].freeze:before {
+  background-image: url("./img/Bennett/freeze.jpg");
+}

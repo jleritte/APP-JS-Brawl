@@ -1,0 +1,46 @@
+.icon.Morgan {
+  background-image: url("./img/Morgan/IconMorgan350.jpg");
+}
+
+BRAWL-CARD[is=morgan-card]:after {
+  background-image: url("./img/Morgan/back.jpg");
+}
+BRAWL-CARD[is=morgan-card].base:before {
+  background-image: url("./img/Morgan/base.jpg");
+}
+BRAWL-CARD[is=morgan-card].hitB:before {
+  background-image: url("./img/Morgan/hitB.jpg");
+}
+BRAWL-CARD[is=morgan-card].hit2B:before {
+  background-image: url("./img/Morgan/hit2B.jpg");
+}
+BRAWL-CARD[is=morgan-card].blockB:before {
+  background-image: url("./img/Morgan/blockB.jpg");
+}
+BRAWL-CARD[is=morgan-card].hitG:before {
+  background-image: url("./img/Morgan/hitG.jpg");
+}
+BRAWL-CARD[is=morgan-card].hit2G:before {
+  background-image: url("./img/Morgan/hit2G.jpg");
+}
+BRAWL-CARD[is=morgan-card].blockG:before {
+  background-image: url("./img/Morgan/blockG.jpg");
+}
+BRAWL-CARD[is=morgan-card].hitR:before {
+  background-image: url("./img/Morgan/hitR.jpg");
+}
+BRAWL-CARD[is=morgan-card].hit2R:before {
+  background-image: url("./img/Morgan/hit2R.jpg");
+}
+BRAWL-CARD[is=morgan-card].blockR:before {
+  background-image: url("./img/Morgan/blockR.jpg");
+}
+BRAWL-CARD[is=morgan-card].clear:before {
+  background-image: url("./img/Morgan/clear.jpg");
+}
+BRAWL-CARD[is=morgan-card].press:before {
+  background-image: url("./img/Morgan/press.jpg");
+}
+BRAWL-CARD[is=morgan-card].freeze:before {
+  background-image: url("./img/Morgan/freeze.jpg");
+}

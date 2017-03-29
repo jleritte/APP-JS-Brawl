@@ -1,16 +1,13 @@
-var BrawlDeck = require('./BrawlDeck.js'),
-    BrawlDiscard = require('./BrawlDiscard.js'),
-    BrawlField = require('./BrawlField.js');
+var BrawlDeck = require('brawl-deck'),
+    BrawlDiscard = require('brawl-discard'),
+    BrawlField = require('brawl-field');
 
 var grids,
     whos,
     change = new Event('change'),
     click = new Event('click'),
     body = document.querySelector('body'),
-    templates = require('./templates');
-
-window.Brawl = new Brawl();
-window.Brawl.init();
+    templates = require('templates');
 
 function Brawl(){
   var _private = {
@@ -25,7 +22,6 @@ function Brawl(){
             'clear', 'press', 'freeze'],
     count: 0,
     fillBody: fillBody,
-    buildDecksHTML: buildDecksHTML,
     loadDeck: loadDeck
   };
 
@@ -46,20 +42,6 @@ function Brawl(){
     });
     grids = document.querySelectorAll('[grid]');
     whos = document.getElementsByClassName('who');
-  }
-
-  function buildDecksHTML() {
-    var t = document.querySelector('template.card');
-    Array.prototype.forEach.call(grids,function(elem,indx){
-      var i = 35;
-      while(i){
-        var temp = document.importNode(t.content,true);
-        temp.firstElementChild.setAttribute('cdnm',i);
-        temp.firstElementChild.setAttribute('plyr',indx);
-        elem.appendChild(temp);
-        i--;
-      }
-    });
   }
 
   function loadDeck(e){
@@ -189,11 +171,15 @@ function Brawl(){
 }
 
 window.Brawl = Brawl;
+window.Brawl = new Brawl();
+window.Brawl.init();
 
 function _init() {
+  // var card = require('brawl-card');
+  // card = card(0,'darwin');
+  // document.body.appendChild(card);
   var that = this;
   that.fillBody();
-  that.buildDecksHTML();
   document.querySelector('[value=Play]').addEventListener('click',_startGame);
   document.querySelector('.vsContain').style.opacity = 1;
   document.querySelector('[game]').style.height = 109 + 'px';

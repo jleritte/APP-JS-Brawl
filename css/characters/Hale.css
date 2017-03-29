@@ -1,0 +1,46 @@
+.icon.Hale {
+  background-image: url("./img/Hale/IconHale350.jpg");
+}
+
+BRAWL-CARD[is=hale-card]:after {
+  background-image: url("./img/Hale/back.jpg");
+}
+BRAWL-CARD[is=hale-card].base:before {
+  background-image: url("./img/Hale/base.jpg");
+}
+BRAWL-CARD[is=hale-card].hitB:before {
+  background-image: url("./img/Hale/hitB.jpg");
+}
+BRAWL-CARD[is=hale-card].hit2B:before {
+  background-image: url("./img/Hale/hit2B.jpg");
+}
+BRAWL-CARD[is=hale-card].blockB:before {
+  background-image: url("./img/Hale/blockB.jpg");
+}
+BRAWL-CARD[is=hale-card].hitG:before {
+  background-image: url("./img/Hale/hitG.jpg");
+}
+BRAWL-CARD[is=hale-card].hit2G:before {
+  background-image: url("./img/Hale/hit2G.jpg");
+}
+BRAWL-CARD[is=hale-card].blockG:before {
+  background-image: url("./img/Hale/blockG.jpg");
+}
+BRAWL-CARD[is=hale-card].hitR:before {
+  background-image: url("./img/Hale/hitR.jpg");
+}
+BRAWL-CARD[is=hale-card].hit2R:before {
+  background-image: url("./img/Hale/hit2R.jpg");
+}
+BRAWL-CARD[is=hale-card].blockR:before {
+  background-image: url("./img/Hale/blockR.jpg");
+}
+BRAWL-CARD[is=hale-card].clear:before {
+  background-image: url("./img/Hale/clear.jpg");
+}
+BRAWL-CARD[is=hale-card].press:before {
+  background-image: url("./img/Hale/press.jpg");
+}
+BRAWL-CARD[is=hale-card].freeze:before {
+  background-image: url("./img/Hale/freeze.jpg");
+}
