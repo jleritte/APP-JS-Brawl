@@ -19,16 +19,6 @@ xtag.register('brawl-card',{
         this._type = type;
       }
     }
-  },
-  lifecycle: {
-    inserted: function() {
-      if(!this.attributes.is){
-        var out = document.createElement('brawl-card',this.who + '-card');
-        out.className = _toString.bind(this)();
-        out.type = this.type;
-        this.parentNode.replaceChild(out,this);
-      }
-    }
   }
 });
 
@@ -57,9 +47,10 @@ xtag.register('pearl-card',{
 });
 
 function BrawlCard(theType, who) {
-  var card = document.createElement('brawl-card');
+  var card = document.createElement('brawl-card',who + '-card');
+  console.log(theType,who);
   card.type = theType;
-  card.who = who;
+  card.className = _toString.bind(card)();
   return card;
 }
 

@@ -13,12 +13,12 @@ function BrawlDeck(character) {
     deck: undefined,
     cardUsed: undefined
   };
-  function buildDeck(deckBuilt) {
+  function buildDeck(deckBuilt, who) {
     _private.deck = [DECKSIZE];
     var cardCt = 0, i;
     for(var type = 0; type < 13 ; type++) {
         for(i = 1; i <= deckBuilt[type]; i++) {
-          _private.deck[cardCt] = new BrawlCard(type);
+          _private.deck[cardCt] = new BrawlCard(type, who);
           cardCt++;
         }
     }
@@ -26,12 +26,12 @@ function BrawlDeck(character) {
   }
 
   switch(character) {
-    case 'Bennett':  buildDeck(BENNETT);console.log('Bennett');break;
-    case 'Chris':    buildDeck(CHRIS);console.log('Chris');break;
-    case 'Darwin':   buildDeck(DARWIN);console.log('Darwin');break;
-    case 'Hale':     buildDeck(HALE);console.log('Hale');break;
-    case 'Morgan':   buildDeck(MORGAN);console.log('Morgan');break;
-    case 'Pearl':    buildDeck(PEARL);console.log('Pearl');break;
+    case 'bennett':  buildDeck(BENNETT, character);console.log('Bennett');break;
+    case 'chris':    buildDeck(CHRIS, character);console.log('Chris');break;
+    case 'darwin':   buildDeck(DARWIN, character);console.log('Darwin');break;
+    case 'hale':     buildDeck(HALE, character);console.log('Hale');break;
+    case 'morgan':   buildDeck(MORGAN, character);console.log('Morgan');break;
+    case 'pearl':    buildDeck(PEARL, character);console.log('Pearl');break;
   }
 
   Object.defineProperties(this,{
