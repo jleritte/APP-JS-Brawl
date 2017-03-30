@@ -1,11 +1,13 @@
 BRAWL-CARD {
   background: #FFF;
-  border: 1px solid #000;
   border-radius: 5px;
+  border: 1px solid #000;
   display: block;
   height: 211px;
-  /* opacity: 0; */
-  position: relative;
+  left: -300px;
+  opacity: 0;
+  position: fixed;
+  top: -300px;
   transform-style: preserve-3d;
   transition: all 0.5s ease;
   width: 152px;
@@ -28,4 +30,8 @@ BRAWL-CARD:before {
 BRAWL-CARD:before {
   transform: rotateY(180deg);
   z-index: 1;
+}
+
+.flipped {
+  transform: rotateY(180deg);
 }

@@ -19,6 +19,16 @@ xtag.register('brawl-card',{
         this._type = type;
       }
     }
+  },
+  events: {
+    click: function() {
+      if(!this.className.match('flipped')){
+        this.className += ' flipped';
+      }
+    }
+  },
+  methods: {
+    toString: _toString
   }
 });
 
@@ -48,9 +58,10 @@ xtag.register('pearl-card',{
 
 function BrawlCard(theType, who) {
   var card = document.createElement('brawl-card',who + '-card');
-  console.log(theType,who);
+
   card.type = theType;
-  card.className = _toString.bind(card)();
+  card.className = card.toString();
+
   return card;
 }
 

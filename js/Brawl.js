@@ -49,28 +49,22 @@ function Brawl(){
         player = parseInt(who.substr(-1,1)),
         select = e.target.nextElementSibling;
     select.className = select.className.replace('select','selected');
-    who = who.replace(/\d/,'');
+    who = who.replace(/\d/,'').toLowerCase();
     _private.deck[player] = new BrawlDeck(who,player);
     show(who,_private.deck[player],player);
     select.nextElementSibling.innerHTML = _private.deck[player].cardsLeft();
     select.nextElementSibling.style.opacity = 1;
   }
 
-  function buildCardClass(deck,x) {
-    var i, bd=[];
-    for(i = 0; i < deck.length; i++){
-      bd.push(_private.icons[deck[i].getType()]);
-    }
-    return bd;
-  }
-
   function show(name,deck,x) {
     deck.shuffle();
-    deck = buildCardClass(deck.getDeck(),x);
     var i,
         land = document.querySelectorAll('.deckLanding')[x];
-    Array.prototype.forEach.call(grids[x].children, function(contain,i) {
-      var card = contain.firstElementChild, lt;
+    deck.getDeck().forEach(function(card) {
+      grids[x].appendChild(card);
+    });
+    Array.prototype.forEach.call(grids[x].children, function(card,i) {
+      var lt;
       if (i < 7){
         lt = 20;
       } else if (i < 14) {
@@ -83,62 +77,59 @@ function Brawl(){
         lt = 0;
       }
       setTimeout(function(){
-        contain.style.zIndex = 170-i*5;
-        contain.style.left = land.offsetLeft+5-lt+'px';
-        contain.style.top = land.offsetTop + 8 + 'px';
+        card.style.zIndex = 170-i*5;
+        card.style.left = land.offsetLeft+5-lt+'px';
+        card.style.top = land.offsetTop + 8 + 'px';
         card.style.boxShadow = '0 0 0 black';
         card.style.opacity = 1;
         card.style.transform = '';
-        card.className = name;
-        card.firstElementChild.className = deck[i];
         card.addEventListener('click',flip);
       },50*(36-i));
     });
-    setTimeout(function(){grids[x].children[0].firstElementChild.dispatchEvent(click);},2750);
-    setTimeout(function(){grids[x].children[1].firstElementChild.dispatchEvent(click);},3650);
+    setTimeout(function(){grids[x].children[0].dispatchEvent(click);},2750);
+    setTimeout(function(){grids[x].children[0].dispatchEvent(click);},3650);
   }
 
   function flip(e) {
     var x = _findPlayer(e.target)-1,
         deck = _private.deck[x],
-        contain = grids[x].firstElementChild;
-    if(parseInt(contain.getAttribute('cdnm')) !== deck.cardsLeft()){
+        card = grids[x].firstElementChild;
+    if(35 - deck.getDeck().indexOf(card) !== deck.cardsLeft()){
       return;
     }
-    var card = deck.dealCard(),
-        cardHtml = contain.firstElementChild,
-        left = document.querySelectorAll('.discard')[x].offsetLeft + 5,
+    card = deck.dealCard();
+    var left = document.querySelectorAll('.discard')[x].offsetLeft + 5,
         flipdir = 180 - (x * 360),
         zrotate = Math.floor(Math.random() * 360);//* 10 + 90);
-    if(!card.getType() && deck.cardsLeft() === 34) {
+    if(!card.type && deck.cardsLeft() === 34) {
       var side = x ? 'R' : 'L',
           playA = document.querySelector('[playArea]'),
           center = playA.clientWidth / 2 - (150 / 2);
-      cardHtml.style.transform = 'rotateY(' + flipdir + 'deg) rotateZ(' + 360 + 'deg)';
-      contain.style.top = playA.offsetTop + 'px';
+      card.style.transform = 'rotateY(' + flipdir + 'deg) rotateZ(' + 360 + 'deg)';
+      card.style.top = playA.offsetTop + 'px';
       if (side === 'R') {
-        contain.style.left = center + (150*0.75) + 'px';
+        card.style.left = center + (150*0.75) + 'px';
       } else {
-        contain.style.left = center - (150*0.75) + 'px';
+        card.style.left = center - (150*0.75) + 'px';
       }
       setTimeout(function(){
-        playA.appendChild(contain);
+        playA.appendChild(card);
       },500);
-      cardHtml.addEventListener('click',_playtoBase);
+      card.addEventListener('click',_playtoBase);
     } else {
       _private.discard[x].setCard(card);
-      cardHtml.style.transform = 'rotateY(180deg)';
-      cardHtml.className += ' deck';
-      contain.style.left = left+'px';
+      card.style.transform = 'rotateY(180deg)';
+      card.className += ' deck';
+      card.style.left = left+'px';
       setTimeout(function(){
-        document.querySelectorAll('.discard')[x].appendChild(contain);
+        document.querySelectorAll('.discard')[x].appendChild(card);
       },500);
     }
     setTimeout(function(){
-      contain.style.zIndex = 0;
+      card.style.zIndex = 0;
     },200);
-    cardHtml.style.boxShadow = '';
-    cardHtml.removeEventListener('click',flip);
+    card.style.boxShadow = '';
+    card.removeEventListener('click',flip);
     document.querySelectorAll('[cdlt]')[x].innerHTML = deck.cardsLeft();
   }
 
@@ -175,31 +166,30 @@ window.Brawl = new Brawl();
 window.Brawl.init();
 
 function _init() {
-  // var card = require('brawl-card');
-  // card = card(0,'darwin');
-  // document.body.appendChild(card);
-  var that = this;
-  that.fillBody();
-  document.querySelector('[value=Play]').addEventListener('click',_startGame);
-  document.querySelector('.vsContain').style.opacity = 1;
-  document.querySelector('[game]').style.height = 109 + 'px';
-  document.querySelector('[game]').style.width = 321 + 'px';
-  Array.prototype.forEach.call(whos, function(who) {
-    Array.prototype.forEach.call(who.children, function(option) {
-      if(option.selected === true){
-        option.selected = false;
-      }
-      if(option.value === 'blank'){
-        option.selected = true;
-      }
-    });
-  });
-  Array.prototype.forEach.call(document.querySelectorAll('.select.icon'),function(elem,i){
-    elem.addEventListener('click',_selectChar.bind(this));
-  });
-  Array.prototype.forEach.call(whos,function(who){
-    who.addEventListener('change',that.loadDeck);
-  });
+  var card = BrawlDeck('darwin');
+  document.body.appendChild(card);
+  // var that = this;
+  // that.fillBody();
+  // document.querySelector('[value=Play]').addEventListener('click',_startGame);
+  // document.querySelector('.vsContain').style.opacity = 1;
+  // document.querySelector('[game]').style.height = 109 + 'px';
+  // document.querySelector('[game]').style.width = 321 + 'px';
+  // Array.prototype.forEach.call(whos, function(who) {
+  //   Array.prototype.forEach.call(who.children, function(option) {
+  //     if(option.selected === true){
+  //       option.selected = false;
+  //     }
+  //     if(option.value === 'blank'){
+  //       option.selected = true;
+  //     }
+  //   });
+  // });
+  // Array.prototype.forEach.call(document.querySelectorAll('.select.icon'),function(elem,i){
+  //   elem.addEventListener('click',_selectChar.bind(this));
+  // });
+  // Array.prototype.forEach.call(whos,function(who){
+  //   who.addEventListener('change',that.loadDeck);
+  // });
 }
 
 function _startGame(){
