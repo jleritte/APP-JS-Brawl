@@ -166,8 +166,10 @@ window.Brawl = new Brawl();
 window.Brawl.init();
 
 function _init() {
-  var card = BrawlDeck('darwin');
+  var card = BrawlDiscard(0,'darwin');
   document.body.appendChild(card);
+  var card1 = BrawlDiscard(1,'chris');
+  document.body.appendChild(card1);
   // var that = this;
   // that.fillBody();
   // document.querySelector('[value=Play]').addEventListener('click',_startGame);

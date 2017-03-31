@@ -1,25 +1,41 @@
-var BrawlCard = require('brawl-card');
+var BrawlCard = require('brawl-card'),
+  BrawlDeck = require('brawl-deck'),
+  xtag = require('x-tag');
 
-function BrawlDiscard() {
-  var _private = {
-    discard: [],
-    cardLocation: 0
-  };
-
-  Object.defineProperties(this,{
-    'setCard': {
-      value: _setCard.bind(_private),
-      enumerable: true
-    },
-    'getCard': {
-      value: _getCard.bind(_private),
-      enumerable: true
-    },
-    'playCard': {
-      value: _playCard.bind(_private),
-      enumerable: true
+xtag.register('brawl-discard',{
+  accessors: {
+    discard: {
+      get: function() {
+        return this._discard;
+      },
+      set: function(discard) {
+        this._discard = discard;
+      }
     }
-  });
+  },
+  lifecycle: {
+    created: function() {
+      this.discard = [];
+      this.cardLocation = 0;
+    },
+    inserted: function() {
+      var deck = BrawlDeck(this.getAttribute('who'));
+      this.removeAttribute('who');
+      this.appendChild(deck);
+    }
+  },
+  methods: {
+    setCard: _setCard.bind,
+    getCard: _getCard.bind,
+    playCard: _playCard.bind
+  }
+});
+
+function BrawlDiscard(player,who) {
+  var discard = document.createElement('brawl-discard');
+  discard.className = 'p'+(++player);
+  discard.setAttribute('who',who);
+  return discard;
 }
 
 function _setCard(card) {
@@ -30,7 +46,7 @@ function _getCard() {
   if(cardLocation >= 0) {
     return this.discard[cardLocation - 1];
   } else {
-    return new BrawlCard(-1);
+    return BrawlCard(-1);
   }
 }
 function _playCard() {

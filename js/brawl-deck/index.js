@@ -29,9 +29,6 @@ xtag.register('brawl-deck',{
     }
   },
   lifecycle: {
-    created: function() {
-      this.deck = [];
-    },
     inserted: function() {
       this.shuffle();
       this.getDeck().forEach(function(card) {
@@ -53,10 +50,8 @@ xtag.register('brawl-deck',{
         setTimeout(function(){
           card.style.zIndex = 170-i*5;
           card.style.left = this.offsetLeft+5-lt+'px';
-          card.style.top = this.offsetTop + 8 + 'px';
-          card.style.boxShadow = '0 0 0 black';
+          card.style.top = this.offsetTop + 5 + 'px';
           card.style.opacity = 1;
-          card.style.transform = '';
         }.bind(this),50*(36-i));
       }.bind(this));
       setTimeout(function(){this.children[0].dispatchEvent(new Event('click'));}.bind(this),3650);
@@ -114,6 +109,7 @@ function _cardsLeft() {
 }
 function _dealCard() {
   this.cardUsed++;
+  this.removeChild(this.deck[this.cardUsed - 1]);
   return this.deck[this.cardUsed - 1];
 }
 function _getDeck() {
