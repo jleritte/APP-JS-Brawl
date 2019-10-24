@@ -1,4 +1,12 @@
+import $$ from './DOM.js'
+
 {
+  "card": ["<div class=\"contain\">",
+            "<div card>",
+              "<div front></div>",
+              "<div back></div>",
+            "</div>",
+          "</div>"],
   "versus": ["<div class=\"vsContain\">",
               "<div class=\"vs\">",
                 "<div></div>",
