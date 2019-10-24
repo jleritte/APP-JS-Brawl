@@ -9,18 +9,14 @@ const BLANK = -1,
 
 const cards = new WeakMap()
 
-class Card {
-  constructor(type,character) {
+export default class Card {
+  constructor(type) {
     cards.set(this,{
-      type,
-      character
+      type
     })
   }
   get type() {
     return cards.get(this).type
-  }
-  get who() {
-    return cards.get(this).character
   }
   toString() {
     switch(cards.get(this).type) {
@@ -39,36 +35,5 @@ class Card {
       case FREEZE:    return 'freeze';
       default:        return '??';
     }
-  }
-}
-
-export class BennettCard extends Card {
-  constructor(type) {
-    super(type,"Bennett")
-  }
-}
-export class ChrisCard extends Card {
-  constructor(type) {
-    super(type,"Chris")
-  }
-}
-export class DarwinCard extends Card {
-  constructor(type) {
-    super(type,"Darwin")
-  }
-}
-export class HaleCard extends Card {
-  constructor(type) {
-    super(type,"Hale")
-  }
-}
-export class MorganCard extends Card {
-  constructor(type) {
-    super(type,"Morgan")
-  }
-}
-export class PearlCard extends Card {
-  constructor(type) {
-    super(type,"Pearl")
   }
 }

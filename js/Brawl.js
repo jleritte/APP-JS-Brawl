@@ -1,10 +1,16 @@
 import $$ from './DOM.js'
-import {BennettCard, ChrisCard, DarwinCard, HaleCard, MorganCard, PearlCard} from './Card.js'
+import Deck from './Deck.js'
 
 
-for(let i = 0; i < 13; i++) {
-  console.log(`${new BennettCard(i)} ${new ChrisCard(i)} ${new DarwinCard(i)} ${new HaleCard(i)} ${new MorganCard(i)} ${new PearlCard(i)}`)
-}
+let test = new Deck('Darwin')
+
+
+test.deal
+test.deal
+test.deal
+console.log(test.count)
+console.log(`${test}`)
+
 
 // var BrawlDeck = require('brawl-deck'),
 //     BrawlDiscard = require('brawl-discard'),
