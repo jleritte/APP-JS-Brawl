@@ -1,13 +1,18 @@
 import $$ from './DOM.js'
 import Deck from './Deck.js'
+import Discard from './Discard.js'
 
 
-let test = new Deck('Darwin')
+window.test = new Deck('Darwin')
+window.test2 = new Discard()
 
 
-test.deal
-test.deal
-test.deal
+test2.store = test.deal
+console.log(`${test2.top}`)
+test2.store = test.deal
+console.log(`${test2.top}`)
+test2.store = test.deal
+console.log(`${test2.top}`)
 console.log(test.count)
 console.log(`${test}`)
 

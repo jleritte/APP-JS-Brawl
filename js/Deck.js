@@ -24,20 +24,17 @@ export default class Deck {
     shuffle(deck)
     decks.set(this,{
       deck,
-      who,
-      used: 0
+      who
     })
   }
   get cards() {
     return decks.get(this).deck
   }
   get count() {
-    return DECKSIZE - decks.get(this).used
+    return decks.get(this).deck.length
   }
   get deal() {
-    let stack = decks.get(this),
-        card = stack.deck[stack.used++]
-    return card
+    return decks.get(this).deck.shift() || new Card(-1)
   }
   get who() {
     return decks.get(this).who
