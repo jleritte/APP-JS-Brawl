@@ -1,20 +1,19 @@
 import $$ from './DOM.js'
 import Deck from './Deck.js'
 import Discard from './Discard.js'
+import Base from './Base.js'
 
 
 window.test = new Deck('Darwin')
 window.test2 = new Discard()
+window.test3 = new Base(1,'M')
 
-
-test2.store = test.deal
-console.log(`${test2.top}`)
+test.deal
 test2.store = test.deal
 console.log(`${test2.top}`)
 test2.store = test.deal
 console.log(`${test2.top}`)
 console.log(test.count)
-console.log(`${test}`)
 
 
 // var BrawlDeck = require('brawl-deck'),

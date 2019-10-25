@@ -1,4 +1,12 @@
-var BrawlBase = require('brawl-base');
+import Base from './Base.js'
+
+class Field {
+  constuctor() {
+
+  }
+}
+
+
 
 function BrawlField(p1, p2) {
   var _private = {
