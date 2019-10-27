@@ -1,12 +1,71 @@
 import Base from './Base.js'
 
-class Field {
-  constuctor() {
-    alive: [new Base(1,'L'), new Base(2,'R')],
-    scores: []
+const field = new WeakMap()
+
+export default class Field {
+  constructor() {
+    field.set(this,{
+      alive: [new Base(1,'L'), new Base(2,'R')],
+      scores: []
+    })
+  }
+  toString() {
+    return field.get(this).alive.reduce((acc,cur) => acc += cur.location,'')
+  }
+  set newBase({owner,location}) {
+    let {alive} = field.get(this)
+    if(alive.length < 3) {
+      let nBase = new Base(owner,location)
+      alive.push(nBase)
+      field.get(this).alive = alive.map(base => {
+        if(base.location === location && base !== nBase) {
+          base.location = "M"
+        } else if(base.location === "M") {
+          base.location = location === "L" ? "R" : "L"
+        }
+        return base
+      })
+      return true
+    }
+    return false
+  }
+  set clearBase(location) {
+    let {alive} = field.get(this)
+    if(location !== 'M' && alive.length > 1) {
+      field.get(this).alive = alive.map(base => {
+        if(!base.frozen && base.location === location) {
+          return false
+        } else if(base.location === 'M'){
+          base.location = location
+        }
+      }).filter(base => !!base)
+    }
   }
 }
-
+// function _clearBase(a) {
+//   var x, freeze, rtrn = false;
+//   if(a  !==  'M' && this.inPlay.length  !==  1) {
+//     x = this.findLocation(a);
+//     freeze = this.checkFreeze(x);
+//     if(!freeze) {
+//       this.inPlay.splice(x,1);
+//       if(this.inPlay.length > 1) {
+//         x = this.findLocation('M');
+//         this.inPlay[x].setLocation(a);
+//       }
+//       else if(this.inPlay.length === 1) {
+//         switch(a) {
+//           case 'L': {a = 'R';break;}
+//           case 'R': {a = 'L';break;}
+//         }
+//         x = this.findLocation(a);
+//         this.inPlay[x].setLocation('M');
+//       }
+//       rtrn = true;
+//     }
+//   }
+//   return rtrn;
+// }
 
 
 // function BrawlField(p1, p2) {
@@ -15,12 +74,8 @@ class Field {
 //             new BrawlBase(p2,'R')],
 //     p1Score: 0,
 //     p2Score: 0,
-//     checkFreeze: checkFreeze,
 //     findLocation: findLocation
 //   };
-//   function checkFreeze(x) {
-//     return _private.inPlay[x].getFreeze();
-//   }
 //   function findLocation(a) {
 //     var i = -1;
 //     do {
@@ -64,51 +119,6 @@ class Field {
 //   });
 // }
 
-// function _addNewBase(player, a) {
-//   var x, rtrn = false;
-//   if(this.inPlay.length < 3) {
-//     if(this.inPlay.length > 1) {
-//       x = this.findLocation(a);
-//       this.inPlay[x].setLocation('M');
-//       this.inPlay.push(new BrawlBase(player,a));
-//     }
-//     else if(this.inPlay.length === 1) {
-//       this.inPlay.push(new BrawlBase(player,a));
-//       switch(a) {
-//         case 'L': {a = 'R';break;}
-//         case 'R': {a = 'L';break;}
-//       }
-//       x = this.findLocation('M');
-//       this.inPlay[x].setLocation(a);
-//     }
-//     rtrn = true;
-//   }
-//   return rtrn;
-// }
-// function _clearBase(a) {
-//   var x, freeze, rtrn = false;
-//   if(a  !==  'M' && this.inPlay.length  !==  1) {
-//     x = this.findLocation(a);
-//     freeze = this.checkFreeze(x);
-//     if(!freeze) {
-//       this.inPlay.splice(x,1);
-//       if(this.inPlay.length > 1) {
-//         x = this.findLocation('M');
-//         this.inPlay[x].setLocation(a);
-//       }
-//       else if(this.inPlay.length === 1) {
-//         switch(a) {
-//           case 'L': {a = 'R';break;}
-//           case 'R': {a = 'L';break;}
-//         }
-//         x = this.findLocation(a);
-//         this.inPlay[x].setLocation('M');
-//       }
-//       rtrn = true;
-//     }
-//   }
-//   return rtrn;
-// }
 // function _playToBase(a, y, card) {
 //   var freeze = false, played = false, x;
 //   if(this.inPlay.length === 1) {

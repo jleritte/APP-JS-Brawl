@@ -2,11 +2,19 @@ import $$ from './DOM.js'
 import Deck from './Deck.js'
 import Discard from './Discard.js'
 import Base from './Base.js'
+import Field from './Field.js'
 
 
 window.test = new Deck('Darwin')
 window.test2 = new Discard()
 window.test3 = new Base(1,'M')
+window.test4 = new Base(1,'M')
+
+let field = new Field()
+console.log(`${field}`)
+field.newBase = {owner:1,location: "L"}
+console.log(`${field}`)
+
 
 test.deal
 test2.store = test.deal
