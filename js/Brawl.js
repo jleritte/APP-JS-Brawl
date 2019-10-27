@@ -14,14 +14,27 @@ let field = new Field()
 console.log(`${field}`)
 field.newBase = {owner:1,location: "L"}
 console.log(`${field}`)
+field.clearBase = 'R'
+console.log(`${field}`)
+field.clearBase = 'R'
+console.log(`${field}`)
+field.newBase = {owner:1,location: "L"}
+console.log(`${field}`)
+field.newBase = {owner:1,location: "R"}
+console.log(`${field}`)
+field.clearBase = 'R'
+console.log(`${field}`)
 
 
-test.deal
-test2.store = test.deal
-console.log(`${test2.top}`)
-test2.store = test.deal
-console.log(`${test2.top}`)
-console.log(test.count)
+
+
+
+// test.deal
+// test2.store = test.deal
+// console.log(`${test2.top}`)
+// test2.store = test.deal
+// console.log(`${test2.top}`)
+// console.log(test.count)
 
 
 // var BrawlDeck = require('brawl-deck'),

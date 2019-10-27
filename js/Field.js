@@ -12,6 +12,17 @@ export default class Field {
   toString() {
     return field.get(this).alive.reduce((acc,cur) => acc += cur.location,'')
   }
+  get done() {
+    return field.get(this).alive.reduce((acc,cur) => cur.frozen)
+  }
+  set playCard({location,side,card}) {
+    let played
+    field.get(this).alive.map(base => {
+      if(base.location === location && !base.frozen) {
+        played = base.addToSide(card,side)
+      }
+    })
+  }
   set newBase({owner,location}) {
     let {alive} = field.get(this)
     if(alive.length < 3) {
@@ -37,34 +48,36 @@ export default class Field {
           return false
         } else if(base.location === 'M'){
           base.location = location
+        } else if(alive.length < 3){
+          base.location = 'M'
         }
+        return base
       }).filter(base => !!base)
     }
+    return alive.length === field.get(this).alive.length
   }
 }
-// function _clearBase(a) {
-//   var x, freeze, rtrn = false;
-//   if(a  !==  'M' && this.inPlay.length  !==  1) {
-//     x = this.findLocation(a);
-//     freeze = this.checkFreeze(x);
-//     if(!freeze) {
-//       this.inPlay.splice(x,1);
-//       if(this.inPlay.length > 1) {
-//         x = this.findLocation('M');
-//         this.inPlay[x].setLocation(a);
-//       }
-//       else if(this.inPlay.length === 1) {
-//         switch(a) {
-//           case 'L': {a = 'R';break;}
-//           case 'R': {a = 'L';break;}
-//         }
-//         x = this.findLocation(a);
-//         this.inPlay[x].setLocation('M');
-//       }
-//       rtrn = true;
+// function _checkDone() {
+//   var freeze = [false,false,false], done = false, i;
+//   for(i = 0; i < this.inPlay.length; i++) {
+//     freeze[i] = this.inPlay[i].getFreeze();
+//   }
+//   if(this.inPlay.length === 1) {
+//     if(freeze[0]) {
+//       done = true;
 //     }
 //   }
-//   return rtrn;
+//   else if(this.inPlay.length === 2) {
+//     if(freeze[0] && freeze[1]) {
+//       done = true;
+//     }
+//   }
+//   else if(this.inPlay.length === 3) {
+//     if(freeze[0] === true&&freeze[1] === true&&freeze[2] === true) {
+//       done = true;
+//     }
+//   }
+//     return done;
 // }
 
 
@@ -143,28 +156,6 @@ export default class Field {
 //     }
 //   }
 //   return played;
-// }
-// function _checkDone() {
-//   var freeze = [false,false,false], done = false, i;
-//   for(i = 0; i < this.inPlay.length; i++) {
-//     freeze[i] = this.inPlay[i].getFreeze();
-//   }
-//   if(this.inPlay.length === 1) {
-//     if(freeze[0]) {
-//       done = true;
-//     }
-//   }
-//   else if(this.inPlay.length === 2) {
-//     if(freeze[0] && freeze[1]) {
-//       done = true;
-//     }
-//   }
-//   else if(this.inPlay.length === 3) {
-//     if(freeze[0] === true&&freeze[1] === true&&freeze[2] === true) {
-//       done = true;
-//     }
-//   }
-//     return done;
 // }
 // function _calculateScore() {
 //   var p1Count=0, p2Count=0, i;
