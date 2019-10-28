@@ -13,7 +13,7 @@ export default class Field {
     return field.get(this).alive.reduce((acc,cur) => acc += cur.location,'')
   }
   get done() {
-    return field.get(this).alive.reduce((acc,cur) => cur.frozen)
+    return field.get(this).alive.reduce((acc,cur) => acc ? acc : cur.frozen,false)
   }
   set playCard({location,side,card}) {
     let played
