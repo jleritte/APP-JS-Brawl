@@ -13,7 +13,7 @@ export default class Field {
     return field.get(this).alive.reduce((acc,cur) => acc += cur.location,'')
   }
   get done() {
-    return field.get(this).alive.reduce((acc,cur) => cur.frozen)
+    return field.get(this).alive.reduce((acc,cur) => !acc ? acc : cur.frozen, true)
   }
   set playCard({location,side,card}) {
     let played
@@ -40,6 +40,7 @@ export default class Field {
     }
     return false
   }
+  // Convert Map,Filter to Reduce
   set clearBase(location) {
     let {alive} = field.get(this)
     if(location !== 'M' && alive.length > 1) {
@@ -57,29 +58,6 @@ export default class Field {
     return alive.length === field.get(this).alive.length
   }
 }
-// function _checkDone() {
-//   var freeze = [false,false,false], done = false, i;
-//   for(i = 0; i < this.inPlay.length; i++) {
-//     freeze[i] = this.inPlay[i].getFreeze();
-//   }
-//   if(this.inPlay.length === 1) {
-//     if(freeze[0]) {
-//       done = true;
-//     }
-//   }
-//   else if(this.inPlay.length === 2) {
-//     if(freeze[0] && freeze[1]) {
-//       done = true;
-//     }
-//   }
-//   else if(this.inPlay.length === 3) {
-//     if(freeze[0] === true&&freeze[1] === true&&freeze[2] === true) {
-//       done = true;
-//     }
-//   }
-//     return done;
-// }
-
 
 // function BrawlField(p1, p2) {
 //   var _private = {
