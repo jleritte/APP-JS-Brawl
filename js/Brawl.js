@@ -1,4 +1,5 @@
 import $$ from './DOM.js'
+import Card from './Card.js'
 import Deck from './Deck.js'
 import Discard from './Discard.js'
 import Base from './Base.js'
@@ -14,16 +15,20 @@ let field = new Field()
 console.log(`${field}`)
 field.newBase = {owner:1,location: "L"}
 console.log(`${field}`)
-field.clearBase = 'R'
-console.log(`${field}`)
-field.clearBase = 'R'
-console.log(`${field}`)
-field.newBase = {owner:1,location: "L"}
-console.log(`${field}`)
-field.newBase = {owner:1,location: "R"}
-console.log(`${field}`)
-field.clearBase = 'R'
-console.log(`${field}`)
+field.playCard = {location: "M",side: 1,card: new Card(1)}
+field.playCard = {location: "L",side: 0,card: new Card(1)}
+field.playCard = {location: "R",side: 1,card: new Card(1)}
+console.log(field.finalScore)
+// field.clearBase = 'L'
+// console.log(`${field}`)
+// field.clearBase = 'R'
+// console.log(`${field}`)
+// field.newBase = {owner:1,location: "L"}
+// console.log(`${field}`)
+// field.newBase = {owner:1,location: "R"}
+// console.log(`${field}`)
+// field.clearBase = 'R'
+// console.log(`${field}`)
 
 
 

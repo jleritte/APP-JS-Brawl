@@ -27,7 +27,7 @@ export default class Base {
   set location(position) {
     bases.get(this).location = position
   }
-  get scoreSide() {
+  get scoreSides() {
     return bases.get(this).sides.map(side => {
       return side.reduce((acc,cur) => {
         switch(cur.type) {

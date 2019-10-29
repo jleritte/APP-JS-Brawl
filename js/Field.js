@@ -5,8 +5,7 @@ const field = new WeakMap()
 export default class Field {
   constructor() {
     field.set(this,{
-      alive: [new Base(1,'L'), new Base(2,'R')],
-      scores: []
+      alive: [new Base(1,'L'), new Base(2,'R')]
     })
   }
   toString() {
@@ -40,75 +39,31 @@ export default class Field {
     }
     return false
   }
-  // Convert Map,Filter to Reduce
   set clearBase(location) {
     let {alive} = field.get(this)
     if(location !== 'M' && alive.length > 1) {
-      field.get(this).alive = alive.map(base => {
-        if(!base.frozen && base.location === location) {
-          return false
-        } else if(base.location === 'M'){
+      field.get(this).alive = alive.reduce((acc, base,i) => {
+        if(base.frozen || base.location !== location) {
+          acc.push(base)
+        }
+        if(base.location === 'M') {
           base.location = location
-        } else if(alive.length < 3){
+        } else if(alive.length < 3) {
           base.location = 'M'
         }
-        return base
-      }).filter(base => !!base)
+        return acc
+      },[])
     }
     return alive.length === field.get(this).alive.length
   }
+  get finalScore() {
+    return field.get(this).alive.reduce((acc,base) => {
+      let [ p1, p2 ] = base.scoreSides
+      p1 > p2 ? acc[0]++ : acc[1]++
+      return acc
+    },[0,0])
+  }
 }
-
-// function BrawlField(p1, p2) {
-//   var _private = {
-//     inPlay: [new BrawlBase(p1,'L'),
-//             new BrawlBase(p2,'R')],
-//     p1Score: 0,
-//     p2Score: 0,
-//     findLocation: findLocation
-//   };
-//   function findLocation(a) {
-//     var i = -1;
-//     do {
-//       i++;
-//       if(_private.inPlay[i].getLocation() === a) {
-//         return i;
-//       }
-//     }
-//     while(i < _private.inPlay.length);
-//     return 3;
-//   }
-//   Object.defineProperties(this,{
-//     'addNewBase': {
-//       value: _addNewBase.bind(_private),
-//       enumerable: true
-//     },
-//     'clearBase': {
-//       value: _clearBase.bind(_private),
-//       enumerable: true
-//     },
-//     'playToBase': {
-//       value: _playToBase.bind(_private),
-//       enumerable: true
-//     },
-//     'checkDone': {
-//       value: _checkDone.bind(_private),
-//       enumerable: true
-//     },
-//     'calculateScore': {
-//       value: _calculateScore.bind(_private),
-//       enumerable: true
-//     },
-//     'check': {
-//       value: _check.bind(_private),
-//       enumerable: true
-//     },
-//     'getSize': {
-//       value: _getSize.bind(_private),
-//       enumerable: true
-//     }
-//   });
-// }
 
 // function _playToBase(a, y, card) {
 //   var freeze = false, played = false, x;
@@ -135,38 +90,3 @@ export default class Field {
 //   }
 //   return played;
 // }
-// function _calculateScore() {
-//   var p1Count=0, p2Count=0, i;
-//   for(i = 0; i < this.inPlay.length; i++) {
-//     p1Count = this.inPlay[i].scoreSide(0);
-//     p2Count = this.inPlay[i].scoreSide(1);
-//     if(p1Count === p2Count) {
-//       if(this.inPlay[i].getPlayer() === 1) {
-//         p1Score += 1;
-//       } else {
-//         p2Score += 1;
-//       }
-//     } else if(p1Count > p2Count) {
-//       p1Score += 1;
-//     } else {
-//       p2Score += 1;
-//     }
-//   }
-//   console.log("Pleyer 1 score:" + p1Score);
-//   console.log("Player 2 score:" + p2Score);
-//   if(p1Score > p2Score) {
-//     return 1;
-//   } else if(p1Score < p2Score) {
-//     return 2;
-//   } else {
-//     return 0;
-//   }
-// }
-// function _check(i) {
-//   return this.inPlay[i];
-// }
-// function _getSize() {
-//   return this.inPlay.length;
-// }
-
-// module.exports = BrawlField;
