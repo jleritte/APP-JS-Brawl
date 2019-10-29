@@ -15,9 +15,10 @@ let field = new Field()
 console.log(`${field}`)
 field.newBase = {owner:1,location: "L"}
 console.log(`${field}`)
-field.playCard = {location: "M",side: 1,card: new Card(1)}
-field.playCard = {location: "L",side: 0,card: new Card(1)}
-field.playCard = {location: "R",side: 1,card: new Card(1)}
+console.log(field.playCard("M",1,new Card(1)))
+console.log(field.playCard("M",1,new Card(4)))
+console.log(field.playCard("L",0,new Card(1)))
+console.log(field.playCard("R",1,new Card(1)))
 console.log(field.finalScore)
 // field.clearBase = 'L'
 // console.log(`${field}`)

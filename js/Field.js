@@ -14,14 +14,6 @@ export default class Field {
   get done() {
     return field.get(this).alive.reduce((acc,cur) => !acc ? acc : cur.frozen, true)
   }
-  set playCard({location,side,card}) {
-    let played
-    field.get(this).alive.map(base => {
-      if(base.location === location && !base.frozen) {
-        played = base.addToSide(card,side)
-      }
-    })
-  }
   set newBase({owner,location}) {
     let {alive} = field.get(this)
     if(alive.length < 3) {
@@ -62,6 +54,15 @@ export default class Field {
       p1 > p2 ? acc[0]++ : acc[1]++
       return acc
     },[0,0])
+  }
+  playCard(location,side,card) {
+    let played
+    field.get(this).alive.map(base => {
+      if(base.location === location && !base.frozen) {
+        played = base.addToSide(card,side)
+      }
+    })
+    return played
   }
 }
 
